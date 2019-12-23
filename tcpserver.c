@@ -13,8 +13,6 @@
 
 #define SA struct sockaddr
 
-char * bin2hex(const unsigned char *input, size_t len);
-
 char * bin2hex(const unsigned char *input, size_t len ){
     char *result;
     char *hexits = "0123456789ABCDEF";
@@ -44,13 +42,23 @@ int main(int argc, char** argv){
     //create a socket
     listenfd = socket(AF_INET, SOCK_STREAM, 0);
 
+    //initialize the server address by reset all bits to zero
     bzero(&servaddr, sizeof(servaddr));
+    printf("size of servaddr: %lu\n",sizeof(servaddr));
+    
+
     servaddr.sin_family = AF_INET;
     servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
     servaddr.sin_port = htons(SERVER_PORT);
 
+    printf("size of servaddr.sin_family: %lu\n",sizeof(servaddr.sin_family));
+    printf("size of servaddr.sinaddr.s_addr: %lu\n",sizeof(servaddr.sin_addr.s_addr));
+    printf("size of servaddr.sin_port: %lu\n",sizeof(servaddr.sin_port));
+    
+    //bind
     bind(listenfd,(SA *)&servaddr,sizeof(servaddr));
 
+    //listening
     listen(listenfd,10);
 
     for(;;){
@@ -73,7 +81,7 @@ int main(int argc, char** argv){
             }
             memset(recvline, 0, MAXLINE);
         }         
-    
+
         snprintf((char*)buff, sizeof(buff),"HTTP/1.0 200 OK\r\n\r\nHello");
 
         write(connfd, (char*)buff, strlen((char*)buff));
