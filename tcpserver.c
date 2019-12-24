@@ -46,7 +46,7 @@ int main(int argc, char** argv){
     bzero(&servaddr, sizeof(servaddr));
     printf("size of servaddr: %lu\n",sizeof(servaddr));
     
-
+    //AF_INET is the basic setting of IP address 
     servaddr.sin_family = AF_INET;
     servaddr.sin_addr.s_addr = htonl(INADDR_ANY);
     servaddr.sin_port = htons(SERVER_PORT);
@@ -61,14 +61,15 @@ int main(int argc, char** argv){
     //listening
     listen(listenfd,10);
 
-    for(;;){
-        struct sockaddr_in addr;
+    //using loop to keep listen to the client
+    for(;;){ //infinite loop
+        struct sockaddr_in addr; // sockaddr_in : /Family/Port#/IP address/
         socklen_t addr_len;
  
         //accept blocks until an incoming connection arrives
-        printf("waiting for a connection on port %d\n", SERVER_PORT);
+        printf("waiting for a connection on port %d\n", SERVER_PORT); // simple printing
         fflush(stdout);
-        connfd = accept(listenfd, (SA* )NULL, NULL);
+        connfd = accept(listenfd, (SA*) NULL, NULL);
 
         memset(recvline, 0 , MAXLINE);
 
