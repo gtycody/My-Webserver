@@ -41,6 +41,7 @@ int main(int argc, char** argv){
 
     //create a socket
     listenfd = socket(AF_INET, SOCK_STREAM, 0);
+    printf("%d\n", listenfd);
 
     //initialize the server address by reset all bits to zero
     bzero(&servaddr, sizeof(servaddr));
