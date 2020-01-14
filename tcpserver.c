@@ -13,6 +13,7 @@
 
 #define SA struct sockaddr
 
+
 char * bin2hex(const unsigned char *input, size_t len ){
     char *result;
     char *hexits = "0123456789ABCDEF";
@@ -35,13 +36,13 @@ char * bin2hex(const unsigned char *input, size_t len ){
 
 int main(int argc, char** argv){
     int listenfd, connfd, n;
-    struct sockaddr_in servaddr;
+    struct sockaddr_in servaddr; /* Structure describing an Internet socket address.  */
     uint8_t buff[MAXLINE+1];
     uint8_t recvline[MAXLINE+1];
 
     //create a socket
-    listenfd = socket(AF_INET, SOCK_STREAM, 0);
-    printf("%d\n", listenfd);
+    listenfd = socket(AF_INET, SOCK_STREAM, 0); //0: automatically choose protocal
+    printf("listenfd: %d\n", listenfd);
 
     //initialize the server address by reset all bits to zero
     bzero(&servaddr, sizeof(servaddr));
@@ -56,26 +57,29 @@ int main(int argc, char** argv){
     printf("size of servaddr.sinaddr.s_addr: %lu\n",sizeof(servaddr.sin_addr.s_addr));
     printf("size of servaddr.sin_port: %lu\n",sizeof(servaddr.sin_port));
     
-    //bind
+    //bind socket with setting
     bind(listenfd,(SA *)&servaddr,sizeof(servaddr));
 
     //listening
     listen(listenfd,10);
 
-    //using loop to keep listen to the client
-    for(;;){ //infinite loop
+    //using loop to keep listen to request
+    printf("enter the loop\n");
+    for(;;){ 
         struct sockaddr_in addr; // sockaddr_in : /Family/Port#/IP address/
         socklen_t addr_len;
  
         //accept blocks until an incoming connection arrives
-        printf("waiting for a connection on port %d\n", SERVER_PORT); // simple printing
+        printf("waiting for a connection on port %d\n", SERVER_PORT);
         fflush(stdout);
+
+        //return the new socket's descriptor, or -1 for errors.
         connfd = accept(listenfd, (SA*) NULL, NULL);
 
         memset(recvline, 0 , MAXLINE);
 
         while((n = read(connfd, recvline, MAXLINE-1)) > 0){
-            fprintf(stdout, "\n%s\n\n%s", bin2hex(recvline, n),recvline);
+            //fprintf(stdout, "\n%s\n\n%s", bin2hex(recvline, n),recvline);
 
             //hacky way to detect the end of the message.
             if(recvline[n-1] == '\n'){
@@ -84,9 +88,14 @@ int main(int argc, char** argv){
             memset(recvline, 0, MAXLINE);
         }         
 
+        //
         snprintf((char*)buff, sizeof(buff),"HTTP/1.0 200 OK\r\n\r\nHello");
 
+        //write to client
         write(connfd, (char*)buff, strlen((char*)buff));
+        
+        //close socket
+        printf("loop end\n");
         close (connfd);
     }       
 }
