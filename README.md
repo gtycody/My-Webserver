@@ -1,3 +1,11 @@
+clean:
+rm -rf *.dYSM tcps tcpc
+
+
+
+
+
+
 2019-12-13
 I finished most of my final, and I start my new project which is construct a website from bottom up
 
@@ -12,4 +20,7 @@ update tcp server
 
 2020-01-06
 starting on muti-thread tcp server
+
+2020-01-12
+keep constructing muti-thread tcp server
 

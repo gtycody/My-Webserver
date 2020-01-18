@@ -6,15 +6,25 @@
 #include <string.h>
 #include <unistd.h>
 #include <arpa/inet.h>
+#include <pthread.h>
 
 #define SERVER_PORT 18000
-
 #define MAXLINE 4096
-
 #define SA struct sockaddr
 
+//function declaration
 
-char * bin2hex(const unsigned char *input, size_t len ){
+/*turning binary number to hex*/
+char* bin2hex(const unsigned char *input, size_t len );
+
+int handling_connection(int * serv_addr);
+
+
+int handling_connection(int* serv_addr){
+
+}
+
+char* bin2hex(const unsigned char *input, size_t len ){
     char *result;
     char *hexits = "0123456789ABCDEF";
 
@@ -74,13 +84,12 @@ int main(int argc, char** argv){
         fflush(stdout);
 
         //return the new socket's descriptor, or -1 for errors.
-        connfd = accept(listenfd, (SA*) NULL, NULL);
+        connfd = accept(listenfd, (SA*)NULL, NULL);
 
         memset(recvline, 0 , MAXLINE);
 
         while((n = read(connfd, recvline, MAXLINE-1)) > 0){
             //fprintf(stdout, "\n%s\n\n%s", bin2hex(recvline, n),recvline);
-
             //hacky way to detect the end of the message.
             if(recvline[n-1] == '\n'){
                  break;
@@ -88,7 +97,7 @@ int main(int argc, char** argv){
             memset(recvline, 0, MAXLINE);
         }         
 
-        //
+        //combine the buff with content
         snprintf((char*)buff, sizeof(buff),"HTTP/1.0 200 OK\r\n\r\nHello");
 
         //write to client
