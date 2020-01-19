@@ -92,6 +92,11 @@ int main(int argc, char **agrv){
 
   listen_sock(&listenfd); //creating listening socket
   bzero((char *) &serveraddr, sizeof(serveraddr));
+
+
+  optval = 1;
+  setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, (const void *)&optval , sizeof(int));
+
   serveraddr_init(&serveraddr);//initialize serveraddr_in
     
   /*bind socket with address setting*/
@@ -100,21 +105,21 @@ int main(int argc, char **agrv){
   }
 
   /*server goes to listen status*/
-  if (listen(listenfd, 5) < 0){ 
+  if (listen(listenfd, 5) < 0){
     error("ERROR on listen");
   }
 
   /*main loop*/
   while(1){
     socket_accept(&connfd, listenfd, &clientaddr, &clientlen); // accepting clientaddr info
-    hostp = gethostbyaddr((const char *)&clientaddr.sin_addr.s_addr,sizeof(clientaddr.sin_addr.s_addr), AF_INET);
-    printf("server established connection with %s (%s)\n", hostp->h_name, hostaddrp);
+    hostp = gethostbyaddr((const void *)&clientaddr.sin_addr.s_addr,sizeof(clientaddr.sin_addr.s_addr), AF_INET);
+    printf("server established connection with (%s)\n", hostaddrp);
+    bzero(buf, BUFSIZE);
+    n = read(connfd,buf,BUFSIZE);
+    printf("server received %d bytes: %s", n, buf);
+    n = write(connfd, buf, strlen(buf));
+    close(connfd);
   }
-  
-  
-
-
-
   return 0;
 }
 
