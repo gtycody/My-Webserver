@@ -16,59 +16,44 @@ void error(char *msg) {
 }
 
 int main(int argc, char **argv) {
-    int sockfd, portno, n;
+    int sockfd, n;
     struct sockaddr_in serveraddr;
-    struct hostent *server;
-    char *hostname;
     char buf[BUFSIZE];
-
-    /* check command line arguments */
-    if (argc != 3) {
-       fprintf(stderr,"usage: %s <hostname> <port>\n", argv[0]);
-       exit(0);
-    }
-    hostname = argv[1];
-    portno = atoi(argv[2]);
 
     /* socket: create the socket */
     sockfd = socket(AF_INET, SOCK_STREAM, 0);
-    if (sockfd < 0){
+    if (sockfd < 0)
         error("ERROR opening socket");
-    }
-
-    /* gethostbyname: get the server's DNS entry */
-    server = gethostbyname(hostname);
-    if (server == NULL) {
-        fprintf(stderr,"ERROR, no such host as %s\n", hostname);
-        exit(0);
-    }
 
     /* build the server's Internet address */
     bzero((char *) &serveraddr, sizeof(serveraddr));
     serveraddr.sin_family = AF_INET;
-    //bcopy((char *)server->h_addrtype, (char *)&serveraddr.sin_addr.s_addr, server->h_length);
     serveraddr.sin_port = htons(SERVER_PORT);
 
-    // /* connect: create a connection with the server */
-    // if (connect(sockfd, &serveraddr, sizeof(serveraddr)) < 0) 
-    //   error("ERROR connecting");
+    /* connect: create a connection with the server */
+    if (connect(sockfd, (struct sockaddr *)&serveraddr, sizeof(serveraddr)) < 0) 
+        error("ERROR connecting");
 
-    // /* get message line from the user */
-    // printf("Please enter msg: ");
-    // bzero(buf, BUFSIZE);
-    // fgets(buf, BUFSIZE, stdin);
+    /* get message line from the user */
+    while(1){
+        printf("Please enter msg: ");
+        bzero(buf, BUFSIZE);
+        fgets(buf, BUFSIZE, stdin);
 
-    // /* write: send the message line to the server */
-    // n = write(sockfd, buf, strlen(buf));
-    // if (n < 0) 
-    //   error("ERROR writing to socket");
+        printf("%s\n",buf);
 
-    // /* read: print the server's reply */
-    // bzero(buf, BUFSIZE);
-    // n = read(sockfd, buf, BUFSIZE);
-    // if (n < 0) 
-    //   error("ERROR reading from socket");
-    // printf("Echo from server: %s", buf);
-    // close(sockfd);
-    // return 0;
-}
+        /* write: send the message line to the server */
+        if (n = write(sockfd, buf, strlen(buf))< 0) 
+            error("ERROR writing to socket");
+
+        /* read: print the server's reply */
+        bzero(buf, BUFSIZE);
+
+        if (n = read(sockfd, buf, BUFSIZE) < 0) 
+            error("ERROR reading from socket");
+
+        printf("Echo from server: %s", buf);
+    } 
+    close(sockfd);
+    return 0;
+}   

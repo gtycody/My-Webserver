@@ -100,7 +100,7 @@ int main(int argc, char **agrv){
   serveraddr_init(&serveraddr);//initialize serveraddr_in
     
   /*bind socket with address setting*/
-  if (bind(listenfd, (struct sockaddr *) &serveraddr, sizeof(serveraddr)) < 0){
+  if (bind(listenfd, (struct sockaddr *)&serveraddr, sizeof(serveraddr)) < 0){
     error("ERROR on binding");
   }
 
@@ -118,8 +118,8 @@ int main(int argc, char **agrv){
     n = read(connfd,buf,BUFSIZE);
     printf("server received %d bytes: %s", n, buf);
     n = write(connfd, buf, strlen(buf));
-    close(connfd);
   }
+  close(connfd);
   return 0;
 }
 
