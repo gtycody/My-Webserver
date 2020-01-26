@@ -40,19 +40,17 @@ int main(int argc, char **argv) {
         bzero(buf, BUFSIZE);
         fgets(buf, BUFSIZE, stdin);
 
-        printf("%s\n",buf);
-
         /* write: send the message line to the server */
         if (n = write(sockfd, buf, strlen(buf))< 0) 
             error("ERROR writing to socket");
 
+        printf("write pass\n");
         /* read: print the server's reply */
         bzero(buf, BUFSIZE);
-
         if (n = read(sockfd, buf, BUFSIZE) < 0) 
             error("ERROR reading from socket");
 
-        printf("Echo from server: %s", buf);
+        printf("Echo from server: %s\n", buf);
     } 
     close(sockfd);
     return 0;

@@ -1,7 +1,6 @@
 /*2020-01-18 after watching CMU ICS-15213 I found it is
-very interesting to write and construct a echo server
-so the whole program are based on the CMU echoserver.c 
-on the 15213 web page. But i will modify the unexplain one */
+very interesting to write and construct a echo server thus i tried to 
+reconstructed this one which is easier to understand */
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -48,17 +47,8 @@ void socket_accept(int* connfd, int listenfd, struct sockaddr_in* clientaddr, in
 
 //listening socket create:
 void listen_sock(int* listenfd){
-  if ((*listenfd = socket(AF_INET, SOCK_STREAM, 0)) < 0){
-    error("error opening socket");
-  }
-}
-
-void socket_accept(int* connfd, int listenfd, struct sockaddr_in* clientaddr, int* clientlen){
-  if ((*connfd = accept(listenfd,(struct sockaddr *)&clientaddr,clientlen)) < 0){
-    error("error opening socket");
-  }else{
-    printf("connfd %d accept\n",*connfd);
-  }
+  if ((*listenfd = socket(AF_INET, SOCK_STREAM, 0)) < 0)
+    error("error opening socket 1");
 }
 
 //initialize server's internet address:
@@ -79,7 +69,6 @@ int main(int argc, char **agrv){
 
   int listenfd; /* listening socket */
   int connfd; /* connection socket */
-  int portno; /* port to listen on */
   int clientlen; /* byte size of client's address */
   struct sockaddr_in serveraddr; /* server's addr */
   struct sockaddr_in clientaddr; /* client addr */
@@ -89,35 +78,46 @@ int main(int argc, char **agrv){
   int optval; /* flag value for setsockopt */
   int n; /* message byte size */
 
-
   listen_sock(&listenfd); //creating listening socket
   bzero((char *) &serveraddr, sizeof(serveraddr));
 
-
+  /*rerun the server immediately*/
   optval = 1;
   setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, (const void *)&optval , sizeof(int));
-
+  
   serveraddr_init(&serveraddr);//initialize serveraddr_in
-    
+
   /*bind socket with address setting*/
-  if (bind(listenfd, (struct sockaddr *)&serveraddr, sizeof(serveraddr)) < 0){
+  if (bind(listenfd, (struct sockaddr *)&serveraddr, sizeof(serveraddr)) < 0)
     error("ERROR on binding");
-  }
 
   /*server goes to listen status*/
-  if (listen(listenfd, 5) < 0){
+  if (listen(listenfd, 5) < 0)
     error("ERROR on listen");
-  }
 
+  
+  connfd = accept(listenfd, (struct sockaddr *) &clientaddr, &clientlen);
+  if (connfd < 0) 
+    error("ERROR on accept");
+
+  int count = 0;
   /*main loop*/
   while(1){
-    socket_accept(&connfd, listenfd, &clientaddr, &clientlen); // accepting clientaddr info
+    count++;
+    
     hostp = gethostbyaddr((const void *)&clientaddr.sin_addr.s_addr,sizeof(clientaddr.sin_addr.s_addr), AF_INET);
     printf("server established connection with (%s)\n", hostaddrp);
     bzero(buf, BUFSIZE);
-    n = read(connfd,buf,BUFSIZE);
+
+    n = read(connfd, buf, BUFSIZE);
+    if (n < 0) 
+      error("ERROR reading from socket");
     printf("server received %d bytes: %s", n, buf);
+
     n = write(connfd, buf, strlen(buf));
+    if (n < 0) 
+      error("ERROR writing to socket");
+    printf("%d\n",count);
   }
   close(connfd);
   return 0;
