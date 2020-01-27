@@ -10,6 +10,7 @@ reconstructed this one which is easier to understand */
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <unistd.h>
 
 #define BUFSIZE 1024 //size of BUFSIZE is 4 BYTEs and its uint_32 
 #define SERVER_PORT 18000 //lets define server port at front
@@ -43,7 +44,6 @@ struct hostent {
 void error(char* msg); //error warper
 void listen_sock(int* listenfd); //listening socket create:
 void serveraddr_init(struct sockaddr_in* serveraddr); //initialize server's internet address:
-void socket_accept(int* connfd, int listenfd, struct sockaddr_in* clientaddr, int* clientlen);
 
 //listening socket create:
 void listen_sock(int* listenfd){
@@ -65,11 +65,10 @@ void error(char *msg){
 }
 
 int main(int argc, char **agrv){
-  int max_queue = 5; /* max allowable queue length */
 
   int listenfd; /* listening socket */
   int connfd; /* connection socket */
-  int clientlen; /* byte size of client's address */
+  socklen_t clientlen; /* byte size of client's address */
   struct sockaddr_in serveraddr; /* server's addr */
   struct sockaddr_in clientaddr; /* client addr */
   struct hostent *hostp; /* client host info */
@@ -95,29 +94,39 @@ int main(int argc, char **agrv){
   if (listen(listenfd, 5) < 0)
     error("ERROR on listen");
 
-  
+  /*server goes to accept*/
   connfd = accept(listenfd, (struct sockaddr *) &clientaddr, &clientlen);
   if (connfd < 0) 
     error("ERROR on accept");
 
   int count = 0;
+  
   /*main loop*/
   while(1){
     count++;
     
     hostp = gethostbyaddr((const void *)&clientaddr.sin_addr.s_addr,sizeof(clientaddr.sin_addr.s_addr), AF_INET);
+    if (hostp == NULL)
+      error("ERROR on gethostbyaddr");
+    hostaddrp = inet_ntoa(clientaddr.sin_addr);
     printf("server established connection with (%s)\n", hostaddrp);
     bzero(buf, BUFSIZE);
 
     n = read(connfd, buf, BUFSIZE);
     if (n < 0) 
       error("ERROR reading from socket");
-    printf("server received %d bytes: %s", n, buf);
+    printf("server received %d bytes: %s\n", n, buf);
+
+    /*break if receive 0 bytes*/
+    if(n==0){
+      break;
+      printf("server receive 0 bytes, server stop");
+    }
 
     n = write(connfd, buf, strlen(buf));
     if (n < 0) 
       error("ERROR writing to socket");
-    printf("%d\n",count);
+    printf("cycle: %d\n",count);
   }
   close(connfd);
   return 0;
