@@ -17,7 +17,6 @@ void error(char *msg) {
 
 int main(int argc, char **argv) {
     int sockfd, n;
-    char* input;
     struct sockaddr_in serveraddr;
     char buf[BUFSIZE];
 
@@ -39,14 +38,12 @@ int main(int argc, char **argv) {
     while(1){
         printf("Please enter msg: ");
         bzero(buf, BUFSIZE);
-        input = fgets(buf, BUFSIZE, stdin);
-        printf("input: %s",input);
+        fgets(buf, BUFSIZE, stdin);
 
         /* write: send the message line to the server */
         if ((n = write(sockfd, buf, strlen(buf)))< 0) 
             error("ERROR writing to socket");
 
-        printf("write pass\n");
         /* read: print the server's reply */
         bzero(buf, BUFSIZE);
         if ((n = read(sockfd, buf, BUFSIZE)) < 0) 

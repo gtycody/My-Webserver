@@ -106,8 +106,6 @@ int main(int argc, char **agrv){
     count++;
     
     hostp = gethostbyaddr((const void *)&clientaddr.sin_addr.s_addr,sizeof(clientaddr.sin_addr.s_addr), AF_INET);
-    if (hostp == NULL)
-      error("ERROR on gethostbyaddr");
     hostaddrp = inet_ntoa(clientaddr.sin_addr);
     printf("server established connection with (%s)\n", hostaddrp);
     bzero(buf, BUFSIZE);
@@ -119,8 +117,8 @@ int main(int argc, char **agrv){
 
     /*break if receive 0 bytes*/
     if(n==0){
+      printf("server receive 0 bytes, server stop\n");
       break;
-      printf("server receive 0 bytes, server stop");
     }
 
     n = write(connfd, buf, strlen(buf));
