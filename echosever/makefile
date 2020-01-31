@@ -10,4 +10,4 @@ echoclient: echo_client.c
 	$(CC) $(ARGS) -o echoclient echo_client.c
 
 clean:
-	rm -f *.o echoserver echoclient *~
+	rm -f *.o echoclient echoserver *~
