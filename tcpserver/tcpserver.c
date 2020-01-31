@@ -15,15 +15,6 @@
 //function declaration
 
 /*turning binary number to hex*/
-char* bin2hex(const unsigned char *input, size_t len );
-
-int handling_connection(int * serv_addr);
-
-
-int handling_connection(int* serv_addr){
-
-}
-
 char* bin2hex(const unsigned char *input, size_t len ){
     char *result;
     char *hexits = "0123456789ABCDEF";
@@ -76,9 +67,6 @@ int main(int argc, char** argv){
     //using loop to keep listen to request
     printf("enter the loop\n");
     for(;;){ 
-        struct sockaddr_in addr; // sockaddr_in : /Family/Port#/IP address/
-        socklen_t addr_len;
- 
         //accept blocks until an incoming connection arrives
         printf("waiting for a connection on port %d\n", SERVER_PORT);
         fflush(stdout);
@@ -92,7 +80,8 @@ int main(int argc, char** argv){
             //fprintf(stdout, "\n%s\n\n%s", bin2hex(recvline, n),recvline);
             //hacky way to detect the end of the message.
             if(recvline[n-1] == '\n'){
-                 break;
+                printf("trick termination triggered");
+                break;
             }
             memset(recvline, 0, MAXLINE);
         }         
@@ -101,7 +90,9 @@ int main(int argc, char** argv){
         snprintf((char*)buff, sizeof(buff),"HTTP/1.0 200 OK\r\n\r\nHello");
 
         //write to client
-        write(connfd, (char*)buff, strlen((char*)buff));
+        n = write(connfd, (char*)buff, strlen((char*)buff));
+        if(n < 0)
+            printf("write error");
         
         //close socket
         printf("loop end\n");

@@ -42,7 +42,10 @@ int main(int argc, char** argv){
     sendbytes = strlen(sendline);
 
     //send the request
-    write(sockfd,sendline,sendbytes);
+    n = write(sockfd,sendline,sendbytes);
+    if(n < 0){
+        printf("wirte error");
+    }
 
     //receive the response
     memset(receline, 0, MAXLINE);
