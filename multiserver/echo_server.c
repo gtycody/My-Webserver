@@ -55,7 +55,7 @@ void listen_sock(int* listenfd){
 void serveraddr_init(struct sockaddr_in* serveraddr){
   serveraddr->sin_family = AF_INET;
   serveraddr->sin_addr.s_addr = htonl(INADDR_ANY); /*allow any connnection*/
-  serveraddr->sin_port = htons(SERVER_PORT);
+  serveraddr->sin_port = htons(SERVER_PORT); /*set the protal*/
 }
 
 //error warper
@@ -76,6 +76,7 @@ int main(int argc, char **agrv){
   char *hostaddrp; /* dotted decimal host addr string */
   int optval; /* flag value for setsockopt */
   int n; /* message byte size */
+  int pid; /*process id*/
 
   listen_sock(&listenfd); //creating listening socket
   bzero((char *) &serveraddr, sizeof(serveraddr));
@@ -95,40 +96,44 @@ int main(int argc, char **agrv){
     error("ERROR on listen");
 
   /*server goes to accept*/
-  
   /*main loop*/
   while(1){
     connfd = accept(listenfd, (struct sockaddr *) &clientaddr, &clientlen);
     if (connfd < 0) 
     error("ERROR on accept");
 
-    int count = 0;
-
-    while(1){
-      count++;
-    
-      hostp = gethostbyaddr((const void *)&clientaddr.sin_addr.s_addr,sizeof(clientaddr.sin_addr.s_addr), AF_INET);
-      hostaddrp = inet_ntoa(clientaddr.sin_addr);
-      printf("server established connection with (%s)\n", hostaddrp);
-      bzero(buf, BUFSIZE);
-
-      n = read(connfd, buf, BUFSIZE);
-      if (n < 0) 
-        error("ERROR reading from socket");
-      printf("server received %d bytes: %s\n", n, buf);
-
-      /*break if receive 0 bytes*/
-      if(n==0){
-        printf("server receive 0 bytes, server stop\n");
-        break;
-      }
-
-      n = write(connfd, buf, strlen(buf));
-      if (n < 0) 
-        error("ERROR writing to socket");
-      printf("cycle: %d\n",count);
+    pid = fork();
+    if(pid == 0){
+      //printf("i am parent: %d\n",pid);
+      close(connfd);
     }
-    close(connfd);
+    else{
+      //printf("i am child: %d\n",pid);
+      close(listenfd);
+      while(1){
+
+        hostp = gethostbyaddr((const void *)&clientaddr.sin_addr.s_addr,sizeof(clientaddr.sin_addr.s_addr), AF_INET);
+        hostaddrp = inet_ntoa(clientaddr.sin_addr);
+        printf("server:%d established connection with (%s)\n",pid, hostaddrp);
+        bzero(buf, BUFSIZE);
+
+        n = read(connfd, buf, BUFSIZE);
+        if (n < 0) 
+          error("ERROR reading from socket");
+        printf("server:%d received %d bytes: %s\n",pid, n, buf);
+
+        /*break if receive 0 bytes*/
+        if(n == 0){
+          printf("server:%d receive 0 bytes, server stop\n",pid);
+          break;
+        }
+
+        n = write(connfd, buf, strlen(buf));
+        if (n < 0) 
+          error("ERROR writing to socket");
+      }
+      exit(0);
+    }
   }
   return 0;
 }
