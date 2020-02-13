@@ -40,6 +40,9 @@ int main(int argc, char **argv) {
         bzero(buf, BUFSIZE);
         fgets(buf, BUFSIZE, stdin);
 
+        if(buf[0] == 'q'){
+            break;
+        }
         /* write: send the message line to the server */
         if ((n = write(sockfd, buf, strlen(buf)))< 0) 
             error("ERROR writing to socket");

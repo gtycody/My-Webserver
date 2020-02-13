@@ -64,7 +64,7 @@ void error(char *msg){
   exit(1);
 }
 
-int main(int argc, char **agrv){
+int main(){
 
   int listenfd; /* listening socket */
   int connfd; /* connection socket */
@@ -94,45 +94,49 @@ int main(int argc, char **agrv){
   /*server goes to listen status*/
   if (listen(listenfd, 5) < 0)
     error("ERROR on listen");
-
-  /*server goes to accept*/
-  /*main loop*/
+  
+  /*server goes to accept main loop*/
   while(1){
     connfd = accept(listenfd, (struct sockaddr *) &clientaddr, &clientlen);
+    
     if (connfd < 0) 
-    error("ERROR on accept");
-
+      error("ERROR on accept");
+  
     pid = fork();
+    
     if(pid == 0){
-      //printf("i am parent: %d\n",pid);
+      printf("parent: %d keep accepting.\n",pid);
       close(connfd);
+      continue;
     }
-    else{
-      //printf("i am child: %d\n",pid);
+    else if(pid > 0){
+      printf("child: %d handle the quest.\n",pid);
       close(listenfd);
-      while(1){
+
+      while((n = read(connfd,buf,BUFSIZE))>0){
 
         hostp = gethostbyaddr((const void *)&clientaddr.sin_addr.s_addr,sizeof(clientaddr.sin_addr.s_addr), AF_INET);
         hostaddrp = inet_ntoa(clientaddr.sin_addr);
         printf("server:%d established connection with (%s)\n",pid, hostaddrp);
-        bzero(buf, BUFSIZE);
 
-        n = read(connfd, buf, BUFSIZE);
-        if (n < 0) 
-          error("ERROR reading from socket");
+        /*echo to client*/
         printf("server:%d received %d bytes: %s\n",pid, n, buf);
-
-        /*break if receive 0 bytes*/
-        if(n == 0){
-          printf("server:%d receive 0 bytes, server stop\n",pid);
-          break;
-        }
-
         n = write(connfd, buf, strlen(buf));
         if (n < 0) 
           error("ERROR writing to socket");
+        bzero(buf, BUFSIZE);
       }
-      exit(0);
+      
+      /*catch error if n < 0*/
+      if (n < 0){ 
+        error("ERROR reading from socket");
+        break;
+      }
+      /*break kill this child if it receiving 0 bytes*/
+      else if(n == 0){
+        printf("server:%d receive 0 bytes, server stop\n",pid);
+        close(connfd);
+      }
     }
   }
   return 0;
