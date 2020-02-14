@@ -1,6 +1,6 @@
-/*2020-01-18 after watching CMU ICS-15213 I found it is
-very interesting to write and construct a echo server thus i tried to 
-reconstructed this one which is easier to understand */
+/*2020-01-18 after construction the echo server I plan to consturuction the
+muti-process server with fork() to dealing with mutiple incoming call at same
+time. All the detail shown in the README.md*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -12,11 +12,12 @@ reconstructed this one which is easier to understand */
 #include <arpa/inet.h>
 #include <unistd.h>
 
+#include "file.h"
+
 #define BUFSIZE 1024 //size of BUFSIZE is 4 BYTEs and its uint_32 
 #define SERVER_PORT 18000 //lets define server port at front
 
 #if 0 //can switch between 1 or 0 to turn on/off
-
 /* Internet address */
 struct in_addr {
   unsigned int s_addr; 
@@ -40,10 +41,10 @@ struct hostent {
 }
 #endif
 
-//all functions:
-void error(char* msg); //error warper
-void listen_sock(int* listenfd); //listening socket create:
-void serveraddr_init(struct sockaddr_in* serveraddr); //initialize server's internet address:
+/*functions*/
+void error(char* msg); /*error warper*/
+void listen_sock(int* listenfd); /*listening socket create*/
+void serveraddr_init(struct sockaddr_in* serveraddr); /*initialize server's internet address*/
 
 //listening socket create:
 void listen_sock(int* listenfd){
@@ -64,8 +65,13 @@ void error(char *msg){
   exit(1);
 }
 
-int main(){
+/*--------------------------------------------------------------*/
+/*                                                              */
+/*                             MAIN                             */
+/*                                                              */
+/*--------------------------------------------------------------*/
 
+int main(){
   int listenfd; /* listening socket */
   int connfd; /* connection socket */
   socklen_t clientlen; /* byte size of client's address */
@@ -78,14 +84,14 @@ int main(){
   int n; /* message byte size */
   int pid; /*process id*/
 
-  listen_sock(&listenfd); //creating listening socket
+  listen_sock(&listenfd); /*creating listening socket*/
   bzero((char *) &serveraddr, sizeof(serveraddr));
 
-  /*rerun the server immediately*/
+  /*little trick to rerun the server immediately*/
   optval = 1;
   setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, (const void *)&optval , sizeof(int));
   
-  serveraddr_init(&serveraddr);//initialize serveraddr_in
+  serveraddr_init(&serveraddr); /*init serveraddress*/
 
   /*bind socket with address setting*/
   if (bind(listenfd, (struct sockaddr *)&serveraddr, sizeof(serveraddr)) < 0)
@@ -98,18 +104,20 @@ int main(){
   /*server goes to accept main loop*/
   while(1){
     connfd = accept(listenfd, (struct sockaddr *) &clientaddr, &clientlen);
-    
     if (connfd < 0) 
       error("ERROR on accept");
-  
+
+    /*create child process to deal with connfd creating by accept*/  
     pid = fork();
-    
-    if(pid == 0){
+    if(pid < 0){
+      error("ERROR on creating process");
+    }
+    else if(pid == 0){ /*parent need to return to listen status and close the connfd*/
       printf("parent: %d keep accepting.\n",pid);
       close(connfd);
       continue;
     }
-    else if(pid > 0){
+    else{ /*while child close listenfd*/
       printf("child: %d handle the quest.\n",pid);
       close(listenfd);
 

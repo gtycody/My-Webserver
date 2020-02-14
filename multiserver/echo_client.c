@@ -40,6 +40,7 @@ int main(int argc, char **argv) {
         bzero(buf, BUFSIZE);
         fgets(buf, BUFSIZE, stdin);
 
+        /*add quity entence*/
         if(buf[0] == 'q'){
             break;
         }
