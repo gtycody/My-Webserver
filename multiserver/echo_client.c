@@ -10,6 +10,7 @@
 #define BUFSIZE 1024
 #define SERVER_PORT 18000
 
+/*errror wrapper method*/
 void error(char *msg) {
     perror(msg);
     exit(0);

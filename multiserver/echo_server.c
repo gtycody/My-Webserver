@@ -83,6 +83,7 @@ int main(){
   int optval; /* flag value for setsockopt */
   int n; /* message byte size */
   int pid; /*process id*/
+  char* sub_buf; /*catch the first line of http request*/
 
   listen_sock(&listenfd); /*creating listening socket*/
   bzero((char *) &serveraddr, sizeof(serveraddr));
@@ -128,7 +129,8 @@ int main(){
         printf("server:%d established connection with (%s)\n",pid, hostaddrp);
 
         /*echo to client*/
-        printf("server:%d received %d bytes: %s\n",pid, n, buf);
+        sub_buf = http_split(buf);
+        printf("server:%d received %d bytes: %s\n",pid, n, sub_buf);
         n = write(connfd, buf, strlen(buf));
         if (n < 0) 
           error("ERROR writing to socket");
