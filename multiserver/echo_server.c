@@ -12,7 +12,7 @@ time. All the detail shown in the README.md*/
 #include <arpa/inet.h>
 #include <unistd.h>
 
-#include "file.h"
+#include "response.h"
 
 #define BUFSIZE 1024 //size of BUFSIZE is 4 BYTEs and its uint_32 
 #define SERVER_PORT 18000 //lets define server port at front
@@ -130,7 +130,8 @@ int main(){
 
         /*echo to client*/
         sub_buf = http_split(buf);
-        printf("server:%d received %d bytes: %s\n",pid, n, sub_buf);
+        printf("server:%d received %d bytes: %s\n",pid, n, buf);
+        printf("subbuf: %s\n",sub_buf);
         n = write(connfd, buf, strlen(buf));
         if (n < 0) 
           error("ERROR writing to socket");

@@ -8,3 +8,5 @@ clean all method and if else.
 2020-2-14:
     add file.h to sub_tract sub string
 
+2020-2-25:
+    thinking about applying more advance structure on my server

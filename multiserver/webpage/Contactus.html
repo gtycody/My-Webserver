@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="./Contactus.css">
+        <title>Contact Us - Meeting of Minds</title>
+    </head>
+    <body>
+        <h1>Meeting of Minds</h1>
+        <div class="topnav">
+            <a href="./book_store.html" class="navitem">Homepage</a>
+            <a href="./Contactus.html" class="navitem">Contact Us</a>
+        </div>
+        <p class="ab">
+            Pleasee contact us if you have any questions and concerns
+        </p>
+        <form class="form" action="_" method="GET">
+            <table class="survey" style="width:100%">
+                <tr>
+                    <th class="survey"><label for="first">First name:</label></th>
+                    <td class="survey"><input type="text" id="first" name="first" style="float:left" maxlength="100"></td>
+                </tr>
+                <tr>
+                    <th class="survey"><label for="last">Last name:</label></th>
+                    <td class="survey"><input type="text" id="last" name="last" style="float:left" maxlength="100"></td>
+                </tr>
+                <tr>
+                    <th class="survey"><label for="email">Email Address:</label></th>
+                    <td class="survey"><input type="email"  id="email" name="email" style="float:left" maxlength="100"></td>
+                </tr>
+                <tr>
+                    <th class="survey"><label for="phone">Phone Number:</label></th>
+                    <td class="survey"><input type="tel"  id="phone" name="phone" style="float:left" maxlength="20"></td>
+                </tr>
+                <tr>
+                    <th class="survey"><label>What activities are you interested in?</label><br></th>
+                    <td class="survey">
+                        <input type="checkbox" name="liked most" value="book"> Book Club Meetings<br>
+                        <input type="checkbox" name="liked most" value="campus"> Poetry Readings<br>
+                        <input type="checkbox" name="liked most" value="courses offered"> Children Story Readings<br>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="survey"><label for="comments">Comments:</label></th>
+                    <td class="survey"><textarea id="comments" name="comments" rows="5" cols="70" style="float:left" maxlength="200"></textarea></td>
+                </tr>
+            </table>
+            <br/>
+            <br/>
+            <br/>
+            <div class="submitre">
+                <input type="reset" value="Reset">
+                <input type="submit" value="Submit">
+            </div>
+        </form>
+    </body>
+</html>
