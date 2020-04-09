@@ -1,0 +1,117 @@
+<html>
+    <head>
+        <style type="text/css">
+
+        #header{
+            overflow: hidden;
+            text-align: center;
+        }
+
+        #header_wrapper{
+            margin-inline-start: 100px;
+            width: 40%;
+            margin-top: 2.5%;
+        }
+
+        #header_text{
+            font: lighter 2em/100px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+            color: white;
+            font-size: 70px;
+        }
+
+        #title_text{
+            font: lighter 2em/100px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+            color:rgb(34, 27, 27);
+            font-size: 30px;
+        }
+
+
+        #menu {
+            overflow: hidden;
+            text-align: center;
+        }
+
+        #menu ul li {
+	        list-style-type: none;
+        }
+
+    /* Menu Link Styles */
+        #menu ul a {
+	        display: block;
+	        background: white; color:rgb(34, 27, 27);
+	        height: 100px; width: 450px;
+            margin-left: 0px;
+	        font: lighter 2em/100px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+	        text-decoration: none;
+	
+	        -webkit-transition: margin .4s ease-in-out;
+	        -moz-transition: margin .4s ease-in-out;
+	        -o-transition: margin .4s ease-in-out;
+	        -ms-transition: margin .4s ease-in-out;
+	        transition: margin .4s ease-in-out;
+        }
+
+/* Secondary Link Styles */
+        #menu ul a:nth-of-type(even) {
+        	background: rgb(34, 27, 27);
+         	color: white;
+        }
+
+/* Hover Slide */
+        #menu ul li:hover :first-child {
+        	margin-top: -100px;
+        }	
+
+        </style>
+    </head>
+
+
+
+    
+    <body>
+        <div id="header" style="background-color:rgb(34, 27, 27);height:200px; width:100%;">
+            <div id = "header_wrapper" style ="background-color:rgb(34, 27, 27);height:100px;">
+                <h1 id="header_text": white">HELLOWORLD</h1>
+            </div>
+        </div>
+
+
+
+
+        <div id="content" style="background-color:purple;height:1200px;width:100%;">
+            <div id="content_left" style="background-color:white; height:1200px;width:25%;position:absolute;">
+                <br>
+                <div id="content_txt" style="background-color:white; width:80%; margin-left:0%">
+                    <h1 id="title_text"> {{ hello }} </h1>
+                    <h2>{{ time }}</h2>
+                    <br><br><br><br><br><br><br><br><br><br>
+                    <div id="menu" style="background-color:purple;height:100px; width:125%;margin-top:0px;"><ul><li><a href="#">ARTICLE</a><a href="#">See Us</a></li></ul></div>
+                    <div id="menu" style="background-color:purple;height:100px; width:125%;margin-top:0px;"><ul><li><a href="#">CODE</a><a href="#">See Us</a></li></ul></div>
+                    <div id="menu" style="background-color:purple;height:100px; width:125%;margin-top:0px;"><ul><li><a href="#">MAILBOX</a><a href="#">LOG IN</a></li></ul></div>
+                    <div id="menu" style="background-color:purple;height:100px; width:125%;margin-top:0px;"><ul><li><a href="#">INDIVIDUAL PROJECT</a><a href="#">See Us</a></li></ul></div>
+                    <div id="menu" style="background-color:purple;height:100px; width:125%;margin-top:0px;"><ul><li><a href="#">CONTACT ME</a><a href="#">See Us</a></li></ul></div>
+                    
+                </div>       
+            </div>
+
+
+            <div id="content_right" style="background-color:white;height:1200px;width:74%;float:right;">
+                <br><br><br><br>
+                <div id="content_right_menu" style="background-color:white; height:900px; width:73%; margin-left: 5%">
+                    <br>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="footer" style="background-color:rgb(34, 27, 27); height:150px; width:100%">
+        
+        
+        
+        
+        </div>
+
+
+
+    </body>
+</html>
