@@ -30,3 +30,7 @@ echo server basic done
 
 2020-03-25
 back on this project
+
+2020-04-17
+working on connecting blog app and url in django
+
