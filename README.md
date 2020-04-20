@@ -34,3 +34,8 @@ back on this project
 2020-04-17
 working on connecting blog app and url in django
 
+2020-04-19
+do more research on django urls
+
+
+
