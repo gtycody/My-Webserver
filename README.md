@@ -37,5 +37,7 @@ working on connecting blog app and url in django
 2020-04-19
 do more research on django urls
 
+2020-04-22
+function up url connection between url and admin
 
 
