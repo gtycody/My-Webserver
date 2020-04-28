@@ -1,9 +1,10 @@
+
 from django.shortcuts import render
-
-# Create your views here.
-
 from django.shortcuts import render, redirect
-
 from django.http import HttpResponse
+from .models import Post
 
-from .form 
+def article_list(request):
+    articles = Post.objects.all()
+    context={'articles':articles}
+    return render(request, 'list.html', context)
