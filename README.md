@@ -40,4 +40,6 @@ do more research on django urls
 2020-04-22
 function up url connection between url and admin
 
+2020-04-30
+thinking about article layout
 

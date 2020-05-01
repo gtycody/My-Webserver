@@ -1,59 +1,56 @@
+
+              
+
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static '/mysite/list.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/mysite/homepage.css' %}">
 
 <html>
     <head>
-        
-
     </head>
-
-
     <body>
         <div class="header">
             <h2>HELLOWORLD</h2>
         </div>
-
+          
         <div class="row">
             <div class="leftcolumn">
-                <div class="card">
-                    <h2>{{ article.title }}</h2>
-                    <div class="fakeimg">
-                        fakeimg
+                {% for article in articles %}
+                    <div class="card">
+                        <h2>{{ article.title }}</h2>
+                        <div class="fakeimg">
+                            fakeimg
+                        </div>
                     </div>
-                </div>
+                {% endfor %} 
             </div>
 
             <div class="rightcolumn">
-              <div class="card">
-                <h2>My Account</h2>
-                <div class="bottom_1" id="menu"><ul><li><a href="#">WELCOME BACK</a><a href="#">LOG IN</a></li></ul></div>
+                <div class="card">
+                    <h2>My Account</h2>
+                    <div class="bottom_1" id="menu"><ul><li><a href="#">WELCOME BACK</a><a href="#">LOG IN</a></li></ul></div>
                 <br><br>
-                <p>forgot my password</p>
-              </div>
-              <div class="card">
-                <h2>Today's info</h2>
-                <div class="fakeimg">{{time}}</div><br>
-                <div class="fakeimg">Image</div><br>
-                <div class="fakeimg">Image</div>
-              </div>
-              <div class="card">
-                <h2>About me</h2>
-                <p>Some text..</p>
-              </div>
+                    <p>forgot my password</p>
+                </div>
+              
+                <div class="card">
+                    <h2>Notifiction</h2>
+                    <div class="fakeimg">
+                        <h2>{{time}}</h2>
+                    </div><br>
+                </div>
             </div>
+        </div>
+    
+
+
+          <div class="footer">
+            <h2>Footer</h2>
           </div>
-        
-
-
-
-
-        {% for article in articles %}
-            
-        {% endfor %}
     </body>
-
-
 </html>
+
+
+
 
 
 
