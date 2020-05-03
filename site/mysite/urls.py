@@ -9,6 +9,8 @@ urlpatterns = [
     path('homepage/', view.homepage),
     path('article/', view.article),
     path('code/', view.code),
-    path('admin/',admin.site.urls),
+    path('blog/admin/',admin.site.urls),
+
     path('articles/',views.article_list),
+    path('blog/content/<int:id>/', views.article_content),
 ]

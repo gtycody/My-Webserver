@@ -1,0 +1,111 @@
+body {
+  font-family: Arial;
+  padding: 20px;
+  background: #f1f1f1;
+}
+
+/* Header/Blog Title */
+.header {
+  padding: 30px;
+  font-size: 40px;
+  text-align: center;
+  background: white;
+}
+
+/* Create two unequal columns that floats next to each other */
+/* Left column */
+.leftcolumn {
+  float: left;
+  width: 74%;
+}
+
+/* Right column */
+.rightcolumn {
+  float: right;
+  width: 24.5%;
+  zoom: 1;
+}
+
+/* Fake image */
+
+.fakeimg {
+  background-color:#aaa;
+  height: 100px;
+  width: 100%;
+  padding: 0px;
+  text-align: center;
+}
+.bottom_1{
+  background-color:white;
+  height: 100px;
+  width: 100%;
+}
+
+/* Add a card effect for articles */
+.card {
+  background-color:white;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Footer */
+.footer {
+  padding: 20px;
+  text-align: center;
+  background: #ddd;
+  margin-top: 20px;
+}
+
+#menu {
+    overflow: hidden;
+    text-align: center;
+    margin-left: 0px;
+}
+
+#menu ul li {
+  list-style-type: none;
+}
+
+/* Menu Link Styles */
+#menu ul a {
+  display: block;
+  background: white; color:rgb(34, 27, 27);
+  height: 90px; 
+  width: 85%;
+  margin-left: 0px;
+  font: 2em/100px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+  text-decoration: none;
+
+  -webkit-transition: margin .4s ease-in-out;
+  -moz-transition: margin .4s ease-in-out;
+  -o-transition: margin .4s ease-in-out;
+  -ms-transition: margin .4s ease-in-out;
+  transition: margin .4s ease-in-out;
+}
+
+/* Secondary Link Styles */
+#menu ul a:nth-of-type(even) {
+  background: rgb(34, 27, 27);
+   color: white;
+}
+
+/* Hover Slide */
+#menu ul li:hover :first-child {
+  margin-top: -100px;
+}	
+
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 1100px) {
+  .leftcolumn, .rightcolumn {
+    width: 100%;
+    padding: 0;
+  }
+}
