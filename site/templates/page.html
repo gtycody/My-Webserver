@@ -13,14 +13,12 @@
           
         <div class="row">
             <div class="leftcolumn">
-                {% for article in articles %}
-                    <div class="card">
-                        <h2>{{ article.title }}</h2>
-                        <div class="fakeimg">
-                            fakeimg
-                        </div>
-                    </div>
-                {% endfor %} 
+                <div class="card">
+                    <h1>{{article.title}}</h1>
+                    <h2>{{article.author}}</h2>
+                    <p>{{article.content|safe}}</p>
+        
+                </div>
             </div>
 
             <div class="rightcolumn">
