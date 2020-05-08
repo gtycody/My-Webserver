@@ -13,6 +13,7 @@ body {
 }
 
 /* Create two unequal columns that floats next to each other */
+
 /* Left column */
 .leftcolumn {
   float: left;
@@ -24,6 +25,20 @@ body {
   float: right;
   width: 24.5%;
   zoom: 1;
+}
+
+/*text column*/
+.textcard {
+  width: 90%;
+  background-color: greenyellow;
+  margin-left: 5%;
+}
+
+/*navigation*/
+.navigation {
+  padding:10px;
+  margin-top: 20px;
+  background-color: white;
 }
 
 /* Fake image */

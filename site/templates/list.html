@@ -1,11 +1,10 @@
-
-              
-
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static '/mysite/homepage.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/mysite/blogpage.css' %}">
 
 <html>
     <head>
+
+
     </head>
     <body>
         <div class="header">
@@ -14,13 +13,23 @@
           
         <div class="row">
             <div class="leftcolumn">
+                <a>
+                    <div class="navigation">
+                        <h3>navigation</h3>
+                    </div>
+                </a>
+
+
                 {% for article in articles %}
+                <a href="content/{{article.id}}">
                     <div class="card">
-                        <h2>{{ article.title }}</h2>
+                        <h2>{{ article.title}}</h2>
                         <div class="fakeimg">
                             fakeimg
                         </div>
                     </div>
+                </a>
+                    
                 {% endfor %} 
             </div>
 

@@ -2,15 +2,15 @@ from django.urls import path
 from django.conf.urls import url
 from django.conf.urls import include, url
 from django.contrib import admin
-from . import view
-from blog import views
+from .import views
+from blog import blog_view
 
 urlpatterns = [
-    path('homepage/', view.homepage),
-    path('article/', view.article),
-    path('code/', view.code),
+    path('homepage/', views.homepage),
+    path('article/', views.article),
+    path('code/', views.code),
     path('blog/admin/',admin.site.urls),
 
-    path('articles/',views.article_list),
-    path('blog/content/<int:id>/', views.article_content),
+    path('blog/',blog_view.article_list),
+    path('blog/content/<int:id>/',blog_view.article_content),
 ]
