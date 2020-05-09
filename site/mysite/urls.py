@@ -6,11 +6,10 @@ from .import views
 from blog import blog_view
 
 urlpatterns = [
-    path('homepage/', views.homepage),
-    path('article/', views.article),
-    path('code/', views.code),
-    path('blog/admin/',admin.site.urls),
+    url(r'^homepage/',views.homepage,name='homepage'),
+    url(r'^code/', views.code),
+    url(r'^blog/admin/',admin.site.urls),
 
-    path('blog/',blog_view.article_list),
-    path('blog/content/<int:id>/',blog_view.article_content),
+    path('blog/',blog_view.article_list,name='blog'),
+    path('blog/<int:id>/',blog_view.article_content),
 ]

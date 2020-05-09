@@ -1,3 +1,19 @@
+a:link {
+  text-decoration: none;
+  color: black;
+}
+a:active{
+  text-decoration: none;
+  color: black
+}
+a:visited{
+  color:black
+}
+
+a:hover{
+  color:black
+}
+
 body {
   font-family: Arial;
   padding: 20px;
@@ -30,7 +46,7 @@ body {
 /*text column*/
 .textcard {
   width: 90%;
-  background-color: greenyellow;
+  background-color: white;
   margin-left: 5%;
 }
 

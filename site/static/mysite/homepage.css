@@ -1,3 +1,20 @@
+
+a:link {
+  text-decoration: none;
+  color: black;
+}
+a:active{
+  text-decoration: none;
+  color: black
+}
+a:visited{
+  color:black
+}
+
+a:hover{
+  color:black
+}
+
 body {
   font-family: Arial;
   padding: 20px;
@@ -9,7 +26,7 @@ body {
   padding: 30px;
   font-size: 40px;
   text-align: center;
-  background: white;
+  background:white;
 }
 
 /* Create two unequal columns that floats next to each other */
