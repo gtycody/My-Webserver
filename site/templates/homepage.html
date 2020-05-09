@@ -3,69 +3,112 @@
 
 <html>
     <head>
+        <style>
+            .bottom_2{
+              background-color: white;
+              width: 20%;
+              height: 55px;
+            }
+            /*navigation bottom*/
+            #navicard{
+              display:flex;
+              justify-content: center;
+              padding-top: 1em;
+              padding-bottom: 2em;
+            }
+            #navi {
+              overflow: hidden;
+              text-align: center;
+              margin-left: 0px;
+              margin-right: 5%;
+            }
+
+            #navi ul li {
+            list-style-type: none;
+            }
+
+            /* Menu Link Styles */
+            #navi ul a {
+            display: block;
+            background: white; color:rgb(34, 27, 27);
+            height: 50px; 
+            font: 1.5em/45px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+            text-decoration: none;
+
+            -webkit-transition: margin .4s ease-in-out;
+            -moz-transition: margin .4s ease-in-out;
+            -o-transition: margin .4s ease-in-out;
+            -ms-transition: margin .4s ease-in-out;
+            transition: margin .4s ease-in-out;
+            }
+
+            /* Secondary Link Styles */
+            #navi ul a:nth-of-type(even) {
+            background: rgb(34, 27, 27);
+            color: white;
+            }
+
+            /* Hover Slide */
+            #navi ul li:hover :first-child {
+            margin-top: -50px;
+            }	
+
+      </style>
+
     </head>
-    
     <body>
-        <div class="header">
-          <h2>HELLOWORLD</h2>
-        </div>
-          
-          <div class="row">
-            <div class="leftcolumn">
-              <a href="{%url 'blog'%}">
-                <div class="card">
-                  <h2>MY BLOG</h2>
-                  <div class="fakeimg" color=#aaa style="height:200px;">Image</div>
-                </div>
-              </a>
-              
-
-              <a>
-                <div class="card">
-                  <h2>CODE</h2>
-                  <div class="fakeimg" color=#aaa style="height:200px;">Image</div>
-                </div>
-              </a>
-
-
-              <a>
-                <div class="card">
-                  <h2>PHOTOS</h2>
-                  <div class="fakeimg" color=#aaa style="height:200px;">Image</div>
-                </div>
-              </a>
-
+        <a href="{%url 'homepage'%}">
+            <div class="header">
+                <h2>HOMEPAGE</h2>
             </div>
+        </a>
 
+        <div class="card" id="navicard">
+            <div class="bottom_2" id="navi"><ul><li><a href="#">BLOG</a><a href="{%url 'blog'%}">BLOG</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a href="#">CODE</a><a href="#">HELLOWORLD</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a href="#">PHOTO</a><a href="#">PHOTO</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a href="#">ABOUT ME</a><a href="#">CONTACT</a></li></ul></div>
+        </div>
+        
+          
+        <div class="row">
+            <div class="leftcolumn">
 
-
+                {% for article in articles %}
+                <a href="{{article.id}}">
+                    <div class="card">
+                        <h2>{{ article.title}}</h2>
+                        <div class="fakeimg">
+                            fakeimg
+                        </div>
+                    </div>
+                </a>
+                    
+                {% endfor %} 
+            </div>
 
             <div class="rightcolumn">
-              <div class="card">
-                <h2>My Account</h2>
-                <div class="bottom_1" id="menu"><ul><li><a href="#">WELCOME BACK</a><a href="#">LOG IN</a></li></ul></div>
+                <div class="card">
+                    <h2>My Account</h2>
+                    <div class="bottom_1" id="menu"><ul><li><a href="#">WELCOME BACK</a><a href="#">LOG IN</a></li></ul></div>
                 <br><br>
-                <p>forgot my password</p>
-              </div>
-              <div class="card">
-                <h2>Today's info</h2>
-                <div class="fakeimg">{{time}}</div><br>
-                <div class="fakeimg">Image</div><br>
-                <div class="fakeimg">Image</div>
-              </div>
-              <div class="card">
-                <h2>About me</h2>
-                <p>Some text..</p>
-              </div>
+                    <p>forgot my password</p>
+                </div>
+              
+                <div class="card">
+                    <h2>Notifiction</h2>
+                    <div class="fakeimg">
+                        <h2 id="t1">{{time}}</h2>
+                    </div><br>
+                </div>
             </div>
-          </div>
-          
+        </div>
+    
+
 
           <div class="footer">
             <h2>Footer</h2>
           </div>
     </body>
 </html>
-
-
 

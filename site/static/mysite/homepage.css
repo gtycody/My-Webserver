@@ -44,10 +44,8 @@ body {
 }
 
 /* Fake image */
-
 .fakeimg {
-  background-color:#aaa;
-  height: 100px;
+  background-color:black;
   width: 100%;
   padding: 0px;
   text-align: center;
@@ -78,6 +76,10 @@ body {
   text-align: center;
   background: #ddd;
   margin-top: 20px;
+}
+#t1{
+  color: white;
+  font-family: Arial, Helvetica, sans-serif
 }
 
 #menu {
