@@ -64,27 +64,18 @@
         </a>
 
         <div class="card" id="navicard">
-            <div class="bottom_2" id="navi"><ul><li><a href="#">BLOG</a><a href="{%url 'blog'%}">BLOG</a></li></ul></div>
-            <div class="bottom_2" id="navi"><ul><li><a href="#">CODE</a><a href="#">HELLOWORLD</a></li></ul></div>
-            <div class="bottom_2" id="navi"><ul><li><a href="#">PHOTO</a><a href="#">PHOTO</a></li></ul></div>
-            <div class="bottom_2" id="navi"><ul><li><a href="#">ABOUT ME</a><a href="#">CONTACT</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>BLOG</a><a href="{%url 'blog'%}">BLOG</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>CODE</a><a href="#">HELLOWORLD</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>PHOTO</a><a href="#">PHOTO</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>ABOUT ME</a><a href="#">CONTACT</a></li></ul></div>
         </div>
         
           
         <div class="row">
             <div class="leftcolumn">
-
-                {% for article in articles %}
-                <a href="{{article.id}}">
-                    <div class="card">
-                        <h2>{{ article.title}}</h2>
-                        <div class="fakeimg">
-                            fakeimg
-                        </div>
-                    </div>
-                </a>
-                    
-                {% endfor %} 
+                <div class="card">
+                  PHOTO
+                </div>
             </div>
 
             <div class="rightcolumn">

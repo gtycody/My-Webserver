@@ -3,11 +3,31 @@
 
 <html>
     <head>
+        <style>
+            .textwrap{
+                padding-left:3%;
+                padding-top:3%;
+                width: 85%;
+                line-height: 30px;
+            }
+
+            .textcard {
+                width: 90%;
+                background-color: white;
+                margin-left: 5%;
+                display: flex;
+                justify-content: center;
+                padding-right: 5%;
+                padding-bottom: 5%;
+            }
+
+
+        </style>
 
 
     </head>
     <body>
-        <a>
+        <a href="{%url 'homepage'%}">
             <div class="header">
                 <h2>HELLOWORLD</h2>
             </div>
@@ -23,10 +43,14 @@
 
 
                 <div class="card">
-                    <h1>{{article.title}}</h1>
-                    <h2>{{article.author}}</h2>
+                    <div class="textwrap">
+                        <h1>{{article.title}}</h1>
+                    </div>
                     <div class="textcard">
-                        {{article.content|safe}}
+                        <div class="textwrap">
+                            <h3>{{article.author}}</h3>
+                            {{article.content|safe}}
+                        </div>
                     </div>
         
                 </div>
