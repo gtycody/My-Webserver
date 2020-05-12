@@ -12,5 +12,4 @@ urlpatterns = [
 
     path('blog/',blog_view.article_list,name='blog'),
     path('blog/<int:id>/',blog_view.article_content),
-    path('login/')
 ]
