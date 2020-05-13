@@ -1,0 +1,66 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/mysite/homepage.css' %}">
+
+<html>
+    <head>
+        <style>
+            a:link {
+                text-decoration: none;
+                color: black;
+            }
+            a:active{
+                text-decoration: none;
+                color: black
+            }
+            a:visited{
+                color:black
+            }
+
+            a:hover{
+                color:black
+            }
+
+            .header {
+                padding: 30px;
+                font-size: 40px;
+                text-align: center;
+                background:white;
+            }
+
+            .card {
+                background-color:white;
+                padding: 20px;
+                margin-top: 20px;
+            }     
+        </style>
+    </head>
+
+    <body>
+
+        <a href="{%url 'homepage'%}">
+            <div class="header">
+                <h2>HOMEPAGE</h2>
+            </div>
+        </a>
+
+        <div class="card">
+            <br>
+            <form method="post" action=".">
+                {% csrf_token %}
+                <!-- 账号 -->
+                <div class="form-group">
+                    <label for="username">账号</label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+                <!-- 密码 -->
+                <div class="form-group">
+                    <label for="password">密码</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <!-- 提交按钮 -->
+                <button type="submit" class="btn btn-primary">提交</button>
+            </form>
+        </div>
+
+    </body>
+</html>

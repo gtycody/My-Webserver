@@ -19,7 +19,7 @@ def user_login(request):
     elif request.method == 'GET':
         user_login_form = UserLoginForm()
         context ={'frorm':user_login_form}
-        return render(request,'userprofile/login.html',context)
+        return render(request,'login.html',context)
     else:
         return HttpResponse("wrong request type")
 
