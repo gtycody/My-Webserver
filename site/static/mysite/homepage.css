@@ -54,6 +54,7 @@ body {
   background-color:white;
   height: 100px;
   width: 100%;
+  border-radius: 3em;
 }
 
 /* Add a card effect for articles */
@@ -86,6 +87,7 @@ body {
     overflow: hidden;
     text-align: center;
     margin-left: 0px;
+    border-radius: 3em;
 }
 
 #menu ul li {

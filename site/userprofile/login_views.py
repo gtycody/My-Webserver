@@ -11,7 +11,7 @@ def user_login(request):
             user = authenticate(username=data['username'],password=data['password'])
             if user:
                 login(request,user)
-                return redirect("article:article_list")
+                return redirect('homepage')
             else:
                 return HttpResponse("wrong username or password")
         else:
