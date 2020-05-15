@@ -4,6 +4,20 @@
 <html>
     <head>
         <style>
+            .button_wrapper{
+                background-color: white;
+                display: flex;
+                justify-content: center;
+            }
+
+            button{
+                border:black;
+                background-color: white;
+                border:2px solid black;
+                border-radius: 2em;
+                width: 150px;
+            }
+
             .bottom_1{
                 background-color:white;
                 height: 100px;
@@ -37,29 +51,34 @@
 
             /* Menu Link Styles */
             #navi ul a {
-            display: block;
-            background: white; color:rgb(34, 27, 27);
-            height: 50px; 
-            font: 1.5em/45px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-            text-decoration: none;
+                display: block;
+                background: white; color:rgb(34, 27, 27);
+                height: 50px; 
+                font: 1.5em/45px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+                text-decoration: none;
 
-            -webkit-transition: margin .4s ease-in-out;
-            -moz-transition: margin .4s ease-in-out;
-            -o-transition: margin .4s ease-in-out;
-            -ms-transition: margin .4s ease-in-out;
-            transition: margin .4s ease-in-out;
+                -webkit-transition: margin .4s ease-in-out;
+                -moz-transition: margin .4s ease-in-out;
+                -o-transition: margin .4s ease-in-out;
+                -ms-transition: margin .4s ease-in-out;
+                transition: margin .4s ease-in-out;
             }
 
             /* Secondary Link Styles */
             #navi ul a:nth-of-type(even) {
-            background: rgb(34, 27, 27);
-            color: white;
+                background: rgb(34, 27, 27);
+                color: white;
             }
 
             /* Hover Slide */
             #navi ul li:hover :first-child {
-            margin-top: -50px;
-            }	
+                margin-top: -50px;
+            }
+            
+            .textwrapper{
+                display: flex;
+                justify-content: center;
+            }
 
       </style>
 
@@ -87,25 +106,46 @@
             </div>
 
             <div class="rightcolumn">
-                <div class="card">
-                    <h2>My Account</h2>
-                    <div class="bottom_1" id="menu"><ul><li><a>WELCOME BACK</a><a href="{%url 'login'%}">LOG IN</a></li></ul></div>
-                <br><br>
-                    <p>forgot my password</p>
-                </div>
-              
-                <div class="card">
-                    <h2>Notifiction</h2>
-                    <div class="fakeimg">
-                        <h2 id="t1">{{time}}</h2>
-                    </div><br>
-                </div>
+                {% if user.is_authenticated %}
+                    <div class = "card">
+                        <div class = "textwrapper">
+                            <h2>{{ user.username }}</h2>
+                        </div>
+                        
+                        <div class = "button_wrapper">
+                            <button type="submit" class="btn btn-primary">
+                                <a href="{% url 'logout' %}">
+                                    <h2>LOGOUT</h2>
+                                </a>
+                            </button>
+                        </div>
+
+
+                    </div>
+
+                {% else %}
+                    <div class="card">
+                        <h2>My Account</h2>
+                        <div class="bottom_1" id="menu"><ul><li><a>WELCOME BACK</a><a href="{%url 'login'%}">LOG IN</a></li></ul></div>
+                    <br><br>
+                        <p>forgot my password</p>
+                    </div>
+                {% endif %}
+                
+                    <div class="card">
+                        <h2>Notifiction</h2>
+                        <div class="fakeimg">
+                            <h2 id="t1">{{time}}</h2>
+                        </div><br>
+                    </div>
+                
+                
             </div>
         </div>
     
-          <div class="footer">
+        <div class="footer">
             <h2>Footer</h2>
-          </div>
+        </div>
     </body>
 </html>
 

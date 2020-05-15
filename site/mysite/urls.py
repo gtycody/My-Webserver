@@ -13,6 +13,6 @@ urlpatterns = [
 
     path('blog/',blog_views.article_list,name='blog'),
     path('blog/<int:id>/',blog_views.article_content),
-    path('login/',login_views.user_login,name='login')
-
+    path('login/',login_views.user_login,name='login'),
+    path('logout/',login_views.user_logout, name='logout'),
 ]

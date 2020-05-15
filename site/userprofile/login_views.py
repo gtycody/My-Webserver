@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from .forms import UserLoginForm
 
@@ -22,4 +22,9 @@ def user_login(request):
         return render(request,'login.html',context)
     else:
         return HttpResponse("wrong request type")
+
+def user_logout(request):
+    logout(request)
+    return redirect('homepage')
+
 
