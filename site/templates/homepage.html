@@ -4,6 +4,18 @@
 <html>
     <head>
         <style>
+            .photocard{
+                display: flex;
+                justify-content: center;
+            }
+            .photowrapper{
+                height: 100px;
+                width: 100px;
+                border-radius: 100px;
+                background-color: black;
+                display: flex;
+                justify-content: center;
+            }
             .button_wrapper{
                 background-color: white;
                 display: flex;
@@ -108,10 +120,25 @@
             <div class="rightcolumn">
                 {% if user.is_authenticated %}
                     <div class = "card">
+                        <br><br>
+                        <div class = "photocard">
+                            <div class = "photowrapper">
+                                {% if profile.avator %}
+                                    <img src="{{profile.avatar.url}}">
+                                {% else %}
+                                {% endif %}
+                            </div>
+                        </div>
+                            
+
+
+                        <br>
                         <div class = "textwrapper">
                             <h2>{{ user.username }}</h2>
                         </div>
-                        
+
+
+                        <br>
                         <div class = "button_wrapper">
                             <button type="submit" class="btn btn-primary">
                                 <a href="{% url 'logout' %}">
@@ -119,6 +146,7 @@
                                 </a>
                             </button>
                         </div>
+                        <br>
 
 
                     </div>
