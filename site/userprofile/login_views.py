@@ -27,4 +27,14 @@ def user_logout(request):
     logout(request)
     return redirect('homepage')
 
+def profile_edit(request, id):
+    profile_form = ProfileForm(request.POST,request.FILES)
+
+    if profile_form.is_valid():
+        if 'avator' in request.FILES:
+            profile.avator = profile_cd["avatar"]
+            
+
+
+
 
