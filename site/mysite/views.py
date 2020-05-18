@@ -8,9 +8,11 @@ def homepage(request):
     context['time'] = datetime.datetime.now()
     return render(request, 'homepage.html', context)
 
-def article(request):
-    context = {}
     
 def code(request):
     context = {}
+
+
+def mypage(request):
+    return render(request, 'mypage.html')
 

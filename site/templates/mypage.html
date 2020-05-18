@@ -4,6 +4,11 @@
 <html>
     <head>
         <style>
+            .contentwrapper{
+                display:flex;
+                justify-content:center;
+            }
+
             .photocard{
                 display: flex;
                 justify-content: center;
@@ -109,12 +114,38 @@
             <div class="bottom_2" id="navi"><ul><li><a>ABOUT ME</a><a href="#">CONTACT</a></li></ul></div>
         </div>
         
-          
+        
         <div class="row">
             <div class="leftcolumn">
                 <div class="card">
-                  PHOTO
+                    <div class="contentwrapper">
+                        <div class="bottom_2" id="navi"><ul><li><a>WRITE</a><a href="{%url 'blog'%}">BLOG</a></li></ul></div>
+                    </div>
                 </div>
+                
+                
+                <div class="card">
+                    <div class="contentwrapper">
+                        <div class="bottom_2" id="navi"><ul><li><a>CODE</a><a href="#">HELLOWORLD</a></li></ul></div>
+                    </div>
+                </div>
+                
+                
+                <div class="card">
+                    <div class="contentwrapper">
+                        <div class="bottom_2" id="navi"><ul><li><a>ADD PHOTO</a><a href="#">PHOTO</a></li></ul></div>
+                    </div>
+                </div>
+                
+                
+                <div class="card">
+                    <div class="contentwrapper">
+                        <div class="bottom_2" id="navi"><ul><li><a>MAIL BOX</a><a href="#">CONTACT</a></li></ul></div>
+                    </div>
+                </div>
+
+
+
             </div>
 
             <div class="rightcolumn">
@@ -122,14 +153,12 @@
                     <div class = "card">
                         <br><br>
                         <div class = "photocard">
-                            <a href="{%url 'mypage'%}">
-                                <div class = "photowrapper">
-                                    {% if profile.avator %}
-                                        <img src="{{profile.avatar.url}}">
-                                    {% else %}
-                                    {% endif %}
-                                </div>
-                            </a>
+                            <div class = "photowrapper">
+                                {% if profile.avator %}
+                                    <img src="{{profile.avatar.url}}">
+                                {% else %}
+                                {% endif %}
+                            </div>
                         </div>
                             
 
