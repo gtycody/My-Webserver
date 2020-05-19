@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^code/', views.code),
     url(r'^blog/admin/',admin.site.urls),
     url(r'^mypage/',views.mypage, name='mypage'),
-
+    url(r'^mypage/mysetting', views.mysetting, name='mysetting'),
 
     path('blog/',blog_views.article_list,name='blog'),
     path('blog/<int:id>/',blog_views.article_content),

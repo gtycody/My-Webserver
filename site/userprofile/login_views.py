@@ -28,6 +28,31 @@ def user_logout(request):
     return redirect('homepage')
 
 def profile_edit(request, id):
+    user = User.objects.get(id = id)
+    profile = Profile.objects.get(user_id=id)
+
+    if request.method == 'POST':
+        if request.user != user:
+            return HttpResponse("not authorized")
+    
+        profile_form = ProfileForm(data=request.POST)
+        if profile_form.is_valid():
+            profile_cd = profile_form.cleaned_data
+            profile.email= profile_cd['email']
+            profile.save()
+
+            return redirect("userprofile:edit",id = id)
+        else:
+            return HttpResponse("plz re-enter")
+    
+    elif request.method == "GET":
+        profile_form = ProfileForm()
+        context = {'profile_form' : profile_form, 'profile':profile, 'user':user}
+        return render(request,'userprofile/mysetting.html',context)
+    
+    else:
+        return HttpResponse("cant identify request")
+
     profile_form = ProfileForm(request.POST,request.FILES)
 
     if profile_form.is_valid():

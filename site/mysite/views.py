@@ -16,3 +16,7 @@ def code(request):
 def mypage(request):
     return render(request, 'mypage.html')
 
+
+def mysetting(request):
+    return render(request,'mysetting.html')
+
