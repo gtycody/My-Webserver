@@ -4,10 +4,55 @@
 <html>
     <head>
         <style>
+            /************************************************************
+            *                                                           *
+            *                     SPECIAL SETTTING                      *
+            *                                                           *
+            ************************************************************/
+            img{
+                height:50%;
+                width: 65%;
+                size: inherit;
+            }
+            
+            
+            .modulus_card{
+            
+                width:90%;
+                height:465px;
+                background-color: white;
+                padding:20px;
+                margin-top: 20px;
+                margin-right:20px;
+            }
+
+            @media screen and (max-width: 1100px) {
+                .card_2{
+                    width: 100%;
+                    display: inline;
+                }
+            }
+
+            /************************************************************
+            *                                                           *
+            *                     GOES TO CSS FILE                      *
+            *                                                           *
+            ************************************************************/
+
+
+            .card_2{
+                float: left;
+                width: 100%;
+                background-color: #f1f1f1;
+                display: flex;
+                justify-content: center;
+            }
+
             .contentwrapper{
                 display:flex;
                 justify-content:center;
             }
+
 
             .photocard{
                 display: flex;
@@ -98,8 +143,9 @@
             }
 
       </style>
-
     </head>
+
+
     <body>
         <a href="{%url 'homepage'%}">
             <div class="header">
@@ -117,31 +163,43 @@
         
         <div class="row">
             <div class="leftcolumn">
-                <div class="card">
-                    <div class="contentwrapper">
-                        <div class="bottom_2" id="navi"><ul><li><a>WRITE</a><a href="{%url 'blog'%}">BLOG</a></li></ul></div>
+                <div class="card_2">
+
+                    <div class="modulus_card">
+                        <br><br><br>
+                        <div class="contentwrapper">
+                            <img src= "{% static "image/write.png" %}" alt="My image">
+                        </div>
+                        <br><br>
+                        <div class="contentwrapper">
+                            <H2>WRITE</H2>
+                        </div>
                     </div>
-                </div>
-                
-                
-                <div class="card">
-                    <div class="contentwrapper">
-                        <div class="bottom_2" id="navi"><ul><li><a>CODE</a><a href="#">HELLOWORLD</a></li></ul></div>
+                     
+
+                    <div class="modulus_card">
+                        <br><br><br>
+                        <div class="contentwrapper">
+                            <img src= "{% static "image/email.png" %}" alt="My image">
+                        </div>
+                        <br><br>
+                        <div class="contentwrapper">
+                            <H2>EMAIL</H2>
+                        </div>
                     </div>
-                </div>
-                
-                
-                <div class="card">
-                    <div class="contentwrapper">
-                        <div class="bottom_2" id="navi"><ul><li><a>ADD PHOTO</a><a href="#">PHOTO</a></li></ul></div>
+
+
+                    <div class="modulus_card">
+                        <br><br><br>
+                        <div class="contentwrapper">
+                            <img src= "{% static "image/mysetting.png" %}" alt="My image">
+                        </div>
+                        <br><br>
+                        <div class="contentwrapper">
+                            <H2>MY SETTING</H2>
+                        </div>
                     </div>
-                </div>
-                
-                
-                <div class="card">
-                    <div class="contentwrapper">
-                        <div class="bottom_2" id="navi"><ul><li><a>MAIL BOX</a><a href="#">CONTACT</a></li></ul></div>
-                    </div>
+                    
                 </div>
 
 
@@ -154,9 +212,12 @@
                         <br><br>
                         <div class = "photocard">
                             <div class = "photowrapper">
-                                {% if profile.avator %}
+                                {% if user.email %}
+                                    <h1>Helloworld</h1>
+                                    {{user.email}}
                                     <img src="{{profile.avatar.url}}">
                                 {% else %}
+                                    <h1>NO TOOOOOY XIANG</h1>
                                 {% endif %}
                             </div>
                         </div>

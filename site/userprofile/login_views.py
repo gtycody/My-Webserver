@@ -56,8 +56,8 @@ def profile_edit(request, id):
     profile_form = ProfileForm(request.POST,request.FILES)
 
     if profile_form.is_valid():
-        if 'avator' in request.FILES:
-            profile.avator = profile_cd["avatar"]
+        if 'avatar' in request.FILES:
+            profile.avatar = profile_cd["avatar"]
             
 
 
