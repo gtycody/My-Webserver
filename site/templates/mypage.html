@@ -207,14 +207,16 @@
             </div>
 
             <div class="rightcolumn">
+                {{media.avatar}}
+
                 {% if user.is_authenticated %}
                     <div class = "card">
                         <br><br>
                         <div class = "photocard">
                             <div class = "photowrapper">
-                                {% if user.email %}
+                                {% if profile.avatar %}
                                     <h1>Helloworld</h1>
-                                    {{user.email}}
+                                    {{user.id}}
                                     <img src="{{profile.avatar.url}}">
                                 {% else %}
                                     <h1>NO TOOOOOY XIANG</h1>
