@@ -8,9 +8,6 @@ from .forms import ProfileForm
 from .models import Profile
 
 
-
-
-
 def user_login(request):
     if request.method == 'POST':
         user_login_form = UserLoginForm(data=request.POST)
@@ -19,6 +16,7 @@ def user_login(request):
             user = authenticate(username=data['username'],password=data['password'])
             if user:
                 login(request,user)
+                request.session['avatar'] = get_user_pic(user.id)
                 return redirect('homepage')
             else:
                 return HttpResponse("wrong username or password")
@@ -30,6 +28,12 @@ def user_login(request):
         return render(request,'login.html',context)
     else:
         return HttpResponse("wrong request type")
+
+
+def get_user_pic(id):
+    profile = Profile.objects.get(user_id = id)
+    return profile.avatar.url
+
 
 def user_logout(request):
     logout(request)

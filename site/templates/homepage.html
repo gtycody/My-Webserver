@@ -4,11 +4,18 @@
 <html>
     <head>
         <style>
+            img{
+                width: 100%;
+                height: 100%;
+                size:inherit
+            }
+
             .photocard{
                 display: flex;
                 justify-content: center;
             }
             .photowrapper{
+                overflow: hidden;
                 height: 100px;
                 width: 100px;
                 border-radius: 100px;
@@ -124,10 +131,7 @@
                         <div class = "photocard">
                             <a href="{%url 'mypage' user.id%}">
                                 <div class = "photowrapper">
-                                    {% if profile.avator %}
-                                        <img src="{{profile.avatar.url}}">
-                                    {% else %}
-                                    {% endif %}
+                                    <img src={{avatar}}>
                                 </div>
                             </a>
                         </div>

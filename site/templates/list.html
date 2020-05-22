@@ -3,6 +3,13 @@
 
 <html>
     <head>
+        <style>
+            img{
+                width: 100%;
+                height: auto;
+                size:inherit;
+            }
+        </style>
 
 
     </head>
@@ -36,19 +43,55 @@
             </div>
 
             <div class="rightcolumn">
-                <div class="card">
-                    <h2>My Account</h2>
-                    <div class="bottom_1" id="menu"><ul><li><a href="#">WELCOME BACK</a><a href="#">LOG IN</a></li></ul></div>
-                <br><br>
-                    <p>forgot my password</p>
-                </div>
-              
-                <div class="card">
-                    <h2>Notifiction</h2>
-                    <div class="fakeimg">
-                        <h2>{{time}}</h2>
-                    </div><br>
-                </div>
+                {% if user.is_authenticated %}
+                    <div class = "card">
+                        <br><br>
+                        <div class = "photocard">
+                            <a href="{%url 'mypage' user.id%}">
+                                <div class = "photowrapper">
+                                    <img src={{avatar}}>
+                                </div>
+                            </a>
+                        </div>
+                            
+
+
+                        <br>
+                        <div class = "textwrapper">
+                            <h2>{{ user.username }}</h2>
+                        </div>
+
+
+                        <br>
+                        <div class = "button_wrapper">
+                            <button type="submit" class="btn btn-primary">
+                                <a href="{% url 'logout' %}">
+                                    <h2>LOGOUT</h2>
+                                </a>
+                            </button>
+                        </div>
+                        <br>
+
+
+                    </div>
+
+                {% else %}
+                    <div class="card">
+                        <h2>My Account</h2>
+                        <div class="bottom_1" id="menu"><ul><li><a>WELCOME BACK</a><a href="{%url 'login'%}">LOG IN</a></li></ul></div>
+                    <br><br>
+                        <p>forgot my password</p>
+                    </div>
+                {% endif %}
+                
+                    <div class="card">
+                        <h2>Notifiction</h2>
+                        <div class="fakeimg">
+                            <h2 id="t1">{{time}}</h2>
+                        </div><br>
+                    </div>
+                
+                
             </div>
         </div>
     
