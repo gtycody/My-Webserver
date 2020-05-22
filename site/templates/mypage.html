@@ -10,16 +10,14 @@
             *                                                           *
             ************************************************************/
             img{
-                height:50%;
-                width: 65%;
+                height:100%;
+                width: 100%;
                 size: inherit;
             }
             
             
             .modulus_card{
-            
                 width:90%;
-                height:465px;
                 background-color: white;
                 padding:20px;
                 margin-top: 20px;
@@ -48,17 +46,24 @@
                 justify-content: center;
             }
 
+            .square{
+                display: flex;
+                justify-content: center;
+                width: 80%;
+                height: auto;
+            }
+
             .contentwrapper{
                 display:flex;
                 justify-content:center;
             }
-
 
             .photocard{
                 display: flex;
                 justify-content: center;
             }
             .photowrapper{
+                overflow: hidden;
                 height: 100px;
                 width: 100px;
                 border-radius: 100px;
@@ -87,17 +92,17 @@
                 border-radius: 3em;
             }
             .bottom_2{
-              background-color: white;
-              width: 20%;
-              height: 55px;
-              border-radius: 3em;
+                background-color: white;
+                width: 20%;
+                height: 55px;
+                border-radius: 3em;
             }
             /*navigation bottom*/
             #navicard{
-              display:flex;
-              justify-content: center;
-              padding-top: 1em;
-              padding-bottom: 2em;
+                display:flex;
+                justify-content: center;
+                padding-top: 1em;
+                padding-bottom: 2em;
             }
             #navi {
               overflow: hidden;
@@ -168,7 +173,9 @@
                     <div class="modulus_card">
                         <br><br><br>
                         <div class="contentwrapper">
-                            <img src= "{% static "image/write.png" %}" alt="My image">
+                            <div class = "square">
+                                <img src= "{% static "image/write.png" %}" alt="My image">
+                            </div>
                         </div>
                         <br><br>
                         <div class="contentwrapper">
@@ -180,7 +187,9 @@
                     <div class="modulus_card">
                         <br><br><br>
                         <div class="contentwrapper">
-                            <img src= "{% static "image/email.png" %}" alt="My image">
+                            <div class = "square">
+                                <img src= "{% static "image/email.png" %}" alt="My image">
+                            </div>
                         </div>
                         <br><br>
                         <div class="contentwrapper">
@@ -192,7 +201,9 @@
                     <div class="modulus_card">
                         <br><br><br>
                         <div class="contentwrapper">
-                            <img src= "{% static "image/mysetting.png" %}" alt="My image">
+                            <div class = "square">
+                                <img src= "{% static "image/mysetting.png" %}" alt="My image">
+                            </div>
                         </div>
                         <br><br>
                         <div class="contentwrapper">
@@ -207,17 +218,13 @@
             </div>
 
             <div class="rightcolumn">
-                {{media.avatar}}
-
                 {% if user.is_authenticated %}
                     <div class = "card">
                         <br><br>
                         <div class = "photocard">
                             <div class = "photowrapper">
-                                {% if profile.avatar %}
-                                    <h1>Helloworld</h1>
-                                    {{user.id}}
-                                    <img src="{{profile.avatar.url}}">
+                                {% if user_profile.avatar %}
+                                    <img src="{{user_profile.avatar.url}}">
                                 {% else %}
                                     <h1>NO TOOOOOY XIANG</h1>
                                 {% endif %}

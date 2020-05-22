@@ -2,6 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse
 from .forms import UserLoginForm
+from django.contrib.auth.models import User
+
+from .forms import ProfileForm
+from .models import Profile
+
+
+
+
 
 def user_login(request):
     if request.method == 'POST':
@@ -26,6 +34,14 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('homepage')
+
+
+def profile_content(request,id):
+    user = User.objects.get(id = id)
+    user_profile = Profile.objects.get(user_id=id)
+    context = {'user_profile': user_profile}
+    return render(request, 'mypage.html', context)
+
 
 def profile_edit(request, id):
     user = User.objects.get(id = id)

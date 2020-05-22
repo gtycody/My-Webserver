@@ -122,7 +122,7 @@
                     <div class = "card">
                         <br><br>
                         <div class = "photocard">
-                            <a href="{%url 'mypage'%}">
+                            <a href="{%url 'mypage' user.id%}">
                                 <div class = "photowrapper">
                                     {% if profile.avator %}
                                         <img src="{{profile.avatar.url}}">
