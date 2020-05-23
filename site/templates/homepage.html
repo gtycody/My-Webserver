@@ -11,6 +11,7 @@
             }
 
             .photocard{
+                padding-top: 20px;
                 display: flex;
                 justify-content: center;
             }
@@ -102,7 +103,7 @@
       </style>
 
     </head>
-    <body>
+    <body style = "background-image: url({% static "image/cover.png" %});background-size:100% 100%;">
         <a href="{%url 'homepage'%}">
             <div class="header">
                 <h2>HOMEPAGE</h2>
@@ -119,8 +120,8 @@
           
         <div class="row">
             <div class="leftcolumn">
-                <div class="card">
-                  PHOTO
+                <div class="photocard">
+                    <!-- <img src = "{% static "image/cover.png" %}"> -->
                 </div>
             </div>
 
@@ -167,10 +168,11 @@
                 {% endif %}
                 
                     <div class="card">
-                        <h2>Notifiction</h2>
-                        <div class="fakeimg">
-                            <h2 id="t1">{{time}}</h2>
-                        </div><br>
+                        <div class = "textwrapper">
+                            <h1>Notifiction</h1>
+                            <br>
+                                <h2>email(1)</h2>
+                        </div>
                     </div>
                 
                 
