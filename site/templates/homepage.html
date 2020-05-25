@@ -103,7 +103,7 @@
       </style>
 
     </head>
-    <body style = "background-image: url({% static "image/cover.png" %});background-size:100% 100%;">
+    <body>
         <a href="{%url 'homepage'%}">
             <div class="header">
                 <h2>HOMEPAGE</h2>
@@ -112,8 +112,8 @@
 
         <div class="card" id="navicard">
             <div class="bottom_2" id="navi"><ul><li><a>BLOG</a><a href="{%url 'blog'%}">BLOG</a></li></ul></div>
-            <div class="bottom_2" id="navi"><ul><li><a>CODE</a><a href="#">HELLOWORLD</a></li></ul></div>
-            <div class="bottom_2" id="navi"><ul><li><a>PHOTO</a><a href="#">PHOTO</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>CODE</a><a href="{%url 'code'%}">#include stdio.h</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>PHOTO</a><a href="{%url 'photo'%}">PHOTO</a></li></ul></div>
             <div class="bottom_2" id="navi"><ul><li><a>ABOUT ME</a><a href="#">CONTACT</a></li></ul></div>
         </div>
         
@@ -121,7 +121,7 @@
         <div class="row">
             <div class="leftcolumn">
                 <div class="photocard">
-                    <!-- <img src = "{% static "image/cover.png" %}"> -->
+                    <img src = "{% static "image/cover.png" %}">
                 </div>
             </div>
 

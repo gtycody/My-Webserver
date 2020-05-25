@@ -7,22 +7,20 @@ from userprofile import user_views
 
 def homepage(request):   
     context = {}
-    context['hello'] = 'Welcome to My Blog'
     context['time'] = datetime.datetime.now()
     avatar = request.session.get('avatar')
-    print(avatar)
     context['avatar'] = avatar
     return render(request, 'homepage.html', context)
-
-    
-def code(request):
-    context = {}
-
 
 def mypage(request):
     return render(request, 'mypage.html')
 
-
 def mysetting(request):
     return render(request,'mysetting.html')
 
+def write(request):
+    context = {}
+    context['time'] = datetime.datetime.now()
+    avatar = request.session.get('avatar')
+    context['avatar'] = avatar
+    return render(request,'write.html',context)

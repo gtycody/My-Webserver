@@ -10,13 +10,23 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^homepage/',views.homepage,name='homepage'),
-    url(r'^code/', views.code),
-    url(r'^blog/admin/',admin.site.urls),
+    url(r'^admin/',admin.site.urls),
+    
     url(r'^mypage/mysetting', views.mysetting, name='mysetting'),
+    url(r'^mypage/write', views.write, name='write'),
 
     path('mypage/<int:id>/',user_views.profile_content, name='mypage'),
+
     path('blog/',blog_views.article_list,name='blog'),
     path('blog/<int:id>/',blog_views.article_content),
+
+    path('code/',blog_views.code_list,name='code'),
+    path('code/<int:id>/',blog_views.article_content),
+
+    path('photo/',blog_views.photo_list,name='photo'),
+    path('photo/<int:id>/',blog_views.article_content),
+
+
     path('login/',user_views.user_login,name='login'),
     path('logout/',user_views.user_logout, name='logout'),
 ]

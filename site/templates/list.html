@@ -19,23 +19,22 @@
                 <h2>HELLOWORLD</h2>
             </div>
         </a>
+
+        <div class="card" id="navicard">
+            <div class="bottom_2" id="navi"><ul><li><a>BLOG</a><a href="{%url 'blog'%}">BLOG</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>CODE</a><a href="{%url 'code'%}">#include stdio.h</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>PHOTO</a><a href="{%url 'photo'%}">PHOTO</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>ABOUT ME</a><a href="#">CONTACT</a></li></ul></div>
+        </div>
         
           
         <div class="row">
             <div class="leftcolumn">
                 
-                <div class="navigation">
-                    <h3>navigation</h3>
-                </div>
-
-
                 {% for article in articles %}
                 <a href="{{article.id}}">
                     <div class="card">
-                        <h2>{{ article.title}}</h2>
-                        <div class="fakeimg">
-                            fakeimg
-                        </div>
+                        <h2>{{       article.title}}</h2>
                     </div>
                 </a>
                     

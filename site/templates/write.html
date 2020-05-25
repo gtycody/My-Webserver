@@ -1,0 +1,246 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/mysite/homepage.css' %}">
+
+<html>
+    <head>
+        <style>
+            /************************************************************
+            *                                                           *
+            *                     SPECIAL SETTTING                      *
+            *                                                           *
+            ************************************************************/
+            img{
+                height:100%;
+                width: 100%;
+                size: inherit;
+            }
+                       
+            .modulus_card{
+                width:90%;
+                background-color: white;
+                padding:20px;
+                margin-top: 20px;
+                margin-right:20px;
+            }
+
+            .card_2{
+                height: 397px;
+            }
+
+            /************************************************************
+            *                                                           *
+            *                     GOES TO CSS FILE                      *
+            *                                                           *
+            ************************************************************/
+
+            .card_2{
+                float: left;
+                width: 100%;
+                background-color: #f1f1f1;
+                display: flex;
+                justify-content: center;
+            }
+
+            .square{
+                display: flex;
+                justify-content: center;
+                width: 100%;
+                height:20vw;
+            }
+
+            .contentwrapper{
+                display:flex;
+                justify-content:center;
+            }
+
+            .photocard{
+                display: flex;
+                justify-content: center;
+            }
+            .photowrapper{
+                overflow: hidden;
+                height: 100px;
+                width: 100px;
+                border-radius: 100px;
+                background-color: black;
+                display: flex;
+                justify-content: center;
+            }
+            .button_wrapper{
+                background-color: white;
+                display: flex;
+                justify-content: center;
+            }
+
+            button{
+                border:black;
+                background-color: white;
+                border:2px solid black;
+                border-radius: 2em;
+                width: 150px;
+            }
+
+            .bottom_1{
+                background-color:white;
+                height: 100px;
+                width: 100%;
+                border-radius: 3em;
+            }
+            .bottom_2{
+                background-color: white;
+                width: 20%;
+                height: 55px;
+                border-radius: 3em;
+            }
+            /*navigation bottom*/
+            #navicard{
+                display:flex;
+                justify-content: center;
+                padding-top: 1em;
+                padding-bottom: 2em;
+            }
+            #navi {
+              overflow: hidden;
+              text-align: center;
+              margin-left: 0px;
+              margin-right: 5%;
+              border-radius: 3em;
+            }
+
+            #navi ul li {
+            list-style-type: none;
+            }
+
+            /* Menu Link Styles */
+            #navi ul a {
+                display: block;
+                background: white; color:rgb(34, 27, 27);
+                height: 50px; 
+                font: 1.5em/45px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+                text-decoration: none;
+
+                -webkit-transition: margin .4s ease-in-out;
+                -moz-transition: margin .4s ease-in-out;
+                -o-transition: margin .4s ease-in-out;
+                -ms-transition: margin .4s ease-in-out;
+                transition: margin .4s ease-in-out;
+            }
+
+            /* Secondary Link Styles */
+            #navi ul a:nth-of-type(even) {
+                background: rgb(34, 27, 27);
+                color: white;
+            }
+
+            /* Hover Slide */
+            #navi ul li:hover :first-child {
+                margin-top: -50px;
+            }
+            
+            .textwrapper{
+                display: flex;
+                justify-content: center;
+            }
+
+      </style>
+    </head>
+
+
+    <body>
+        <a href="{%url 'homepage'%}">
+            <div class="header">
+                <h2>HOMEPAGE</h2>
+            </div>
+        </a>
+
+        <div class="card" id="navicard">
+            <div class="bottom_2" id="navi"><ul><li><a>BLOG</a><a href="{%url 'blog'%}">BLOG</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>CODE</a><a href="#">HELLOWORLD</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>PHOTO</a><a href="#">PHOTO</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>ABOUT ME</a><a href="#">CONTACT</a></li></ul></div>
+        </div>
+        
+        
+
+        <div class="row">
+            <div class="leftcolumn">
+                {% if user.is_authenticated %}
+                    <div class="card_2">
+
+                        <div class="modulus_card">
+                            <br><br><br>
+                            <div class="contentwrapper">
+                                <div class = "square">
+                                    <h1>Write blog</h1>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="modulus_card">
+                            <br><br><br>
+                            <div class="contentwrapper">
+                                <div class = "square">
+                                    <h1>'printf("code");'</h1>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                {% else %}
+                    <div class="photocard">
+                        <img src = "{% static "image/cover.png" %}">
+                    </div>
+                {%endif%}
+            </div>
+
+            <div class="rightcolumn">
+                {% if user.is_authenticated %}
+                    <div class = "card">
+                        <br><br><br>
+                        <div class = "photocard">
+                            <a href="{%url 'mypage' user.id%}">
+                                <div class = "photowrapper">
+                                    <img src={{avatar}}>
+                                </div>
+                            </a>
+                        </div>
+                            
+
+
+                        <br>
+                        <div class = "textwrapper">
+                            <h2>{{ user.username }}</h2>
+                        </div>
+
+
+                        <br>
+                        <div class = "button_wrapper">
+                            <button type="submit" class="btn btn-primary">
+                                <a href="{% url 'logout' %}">
+                                    <h2>LOGOUT</h2>
+                                </a>
+                            </button>
+                        </div>
+                        <br>
+
+
+                    </div>
+
+                {% else %}
+                    <div class="card">
+                        <h2>My Account</h2>
+                        <div class="bottom_1" id="menu"><ul><li><a>WELCOME BACK</a><a href="{%url 'login'%}">LOG IN</a></li></ul></div>
+                    <br><br>
+                        <p>forgot my password</p>
+                    </div>
+                {% endif %}    
+            </div>
+        </div>
+    
+        <div class="footer">
+            <h2>Footer</h2>
+        </div>
+    </body>
+</html>
+
