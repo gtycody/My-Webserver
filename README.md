@@ -57,3 +57,6 @@ Re-orginizing css files
 
 2020-05-25
 Thinking
+
+2020-05-26
+Thinking about the structure issssssue
