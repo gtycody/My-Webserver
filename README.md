@@ -60,3 +60,6 @@ Thinking
 
 2020-05-26
 Thinking about the structure issssssue
+
+2020-05-27
+Thinking about new model
