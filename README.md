@@ -63,3 +63,6 @@ Thinking about the structure issssssue
 
 2020-05-27
 Thinking about new model
+
+2020-05-28
+Try to restruct model
