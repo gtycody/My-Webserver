@@ -66,3 +66,6 @@ Thinking about new model
 
 2020-05-28
 Try to restruct model
+
+2020-05-29
+implete change
