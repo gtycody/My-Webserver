@@ -4,8 +4,15 @@ from django.contrib.auth.models import User
 
 STATUS = (
     (0,"Draft"),
-    (1,"Publish")
+    (1,"Publish"),
 )
+
+POST_TYPE = (
+    (0,"article"),
+    (1,"code"),
+    (2,"photo"),
+)
+
 
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
@@ -14,40 +21,15 @@ class Post(models.Model):
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
+    post_type = models.IntegerField(choices=POST_TYPE, default=0)
 
     class Meta:
         ordering = ['-created_on']
 
     def __str__(self):
         return self.title
-        
-
-class Photo(models.Model):
-    title = models.CharField(max_length=200, unique=True)
-    updated_on = models.DateTimeField(auto_now = True)
-    created_on = models.DateTimeField(auto_now_add=True)
-    status = models.IntegerField(choices=STATUS, default=0)
-    content = models.TextField()
-
-    class Meta:
-        ordering = ['-created_on']
-    
-    def __str__(self):
-        return self.title
 
 
-class Code(models.Model):
-    title = models.CharField(max_length=200, unique=True)
-    updated_on = models.DateTimeField(auto_now = True)
-    created_on = models.DateTimeField(auto_now_add=True)
-    status = models.IntegerField(choices=STATUS, default=0)
-    content = models.TextField()
-
-    class Meta:
-        ordering = ['-created_on']
-    
-    def __str__(self):
-        return self.title
 
 
 

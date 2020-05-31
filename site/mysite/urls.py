@@ -20,13 +20,6 @@ urlpatterns = [
     path('blog/',blog_views.article_list,name='blog'),
     path('blog/<int:id>/',blog_views.article_content),
 
-    path('code/',blog_views.code_list,name='code'),
-    path('code/<int:id>/',blog_views.article_content),
-
-    path('photo/',blog_views.photo_list,name='photo'),
-    path('photo/<int:id>/',blog_views.article_content),
-
-
     path('login/',user_views.user_login,name='login'),
     path('logout/',user_views.user_logout, name='logout'),
 ]

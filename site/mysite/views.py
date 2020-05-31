@@ -24,3 +24,4 @@ def write(request):
     avatar = request.session.get('avatar')
     context['avatar'] = avatar
     return render(request,'write.html',context)
+
