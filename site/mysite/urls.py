@@ -17,8 +17,9 @@ urlpatterns = [
 
     path('mypage/<int:id>/',user_views.profile_content, name='mypage'),
 
-    path('blog/',blog_views.article_list,name='blog'),
-    path('blog/<int:id>/',blog_views.article_content),
+    path('blog/<int:types>',blog_views.article_list,name='blog'),
+    path('blog/content/<int:id>/',blog_views.article_content,name = 'blog_content'),
+
 
     path('login/',user_views.user_login,name='login'),
     path('logout/',user_views.user_logout, name='logout'),

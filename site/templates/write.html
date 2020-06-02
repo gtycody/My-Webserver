@@ -9,6 +9,30 @@
             *                     SPECIAL SETTTING                      *
             *                                                           *
             ************************************************************/
+            input{
+                box-sizing: border-box;
+                border-radius: 1em;
+                padding: 7px 0px;
+                padding-left: 1em;
+                padding-right:1em;
+                border: 2px solid black; 
+                width: 55vw;
+                font-size: 1.5em;
+            }
+
+            textarea{
+                box-sizing: border-box;
+                border-radius: 1em;
+                padding: 7px 0px;
+                padding-left: 1em;
+                padding-right:1em;
+                border: 2px solid black; 
+                width: 60vw;
+                font-size: 1.5em;
+            }
+
+
+
             img{
                 height:100%;
                 width: 100%;
@@ -154,9 +178,9 @@
         </a>
 
         <div class="card" id="navicard">
-            <div class="bottom_2" id="navi"><ul><li><a>BLOG</a><a href="{%url 'blog'%}">BLOG</a></li></ul></div>
-            <div class="bottom_2" id="navi"><ul><li><a>CODE</a><a href="#">HELLOWORLD</a></li></ul></div>
-            <div class="bottom_2" id="navi"><ul><li><a>PHOTO</a><a href="#">PHOTO</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>BLOG</a><a href="{%url 'blog' 0%}">BLOG</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>CODE</a><a href="{%url 'blog' 1%}">#include stdio.h</a></li></ul></div>
+            <div class="bottom_2" id="navi"><ul><li><a>PHOTO</a><a href="{%url 'blog' 2%}">PHOTO</a></li></ul></div>
             <div class="bottom_2" id="navi"><ul><li><a>ABOUT ME</a><a href="#">CONTACT</a></li></ul></div>
         </div>
         
@@ -165,28 +189,41 @@
         <div class="row">
             <div class="leftcolumn">
                 {% if user.is_authenticated %}
-                    <div class="card_2">
+                <div class = "card">
+                    <form method="post" action=".">                      
+                        {% csrf_token %}
 
-                        <div class="modulus_card">
-                            <br><br><br>
-                            <div class="contentwrapper">
-                                <div class = "square">
-                                    <h1>Write blog</h1>
-                                </div>
-                            </div>
-                        </div>
-                        
+                        <br><br><br><br><br>
 
-                        <div class="modulus_card">
-                            <br><br><br>
-                            <div class="contentwrapper">
-                                <div class = "square">
-                                    <h1>'printf("code");'</h1>
-                                </div>
+                        <div class = "contentwrapper">
+                            <div class="form-group">
+                                <input type="text" class="form-control" id="title" name="title">
                             </div>
                         </div>
 
-                    </div>
+
+                        <br><br><br>
+
+
+                        <div class = "contentwrapper">
+                            <div class="form-group">
+                                <textarea type="text" class="form-control" id="body" name="body" rows="12"></textarea>
+                            </div>
+                        </div>
+
+
+                        <br><br><br>
+
+
+                        <div class = "contentwrapper">
+                            <button type="submit" class="btn btn-primary"><h2>
+                                SUBMIT
+                            </h2></button>
+                        </div>
+
+
+                    </form>
+                </div>
                 {% else %}
                     <div class="photocard">
                         <img src = "{% static "image/cover.png" %}">

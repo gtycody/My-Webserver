@@ -5,12 +5,11 @@ from .models import Post
 from userprofile import user_views
 import markdown
 
-def article_list(request):
-    articles = Post.objects.all()
+def article_list(request, types):
+    articles = Post.objects.filter(post_type = types )
     context = {'articles': articles}
     avatar = request.session.get('avatar')
     context['avatar'] = avatar
-    print(context)
     return render(request, 'list.html', context)
 
 
