@@ -18,10 +18,4 @@ def mypage(request):
 def mysetting(request):
     return render(request,'mysetting.html')
 
-def write(request):
-    context = {}
-    context['time'] = datetime.datetime.now()
-    avatar = request.session.get('avatar')
-    context['avatar'] = avatar
-    return render(request,'write.html',context)
 

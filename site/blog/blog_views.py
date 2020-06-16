@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from .models import Post
 from userprofile import user_views
 import markdown
+from .forms import ArticlePostForm
 
 def article_list(request, types):
     articles = Post.objects.filter(post_type = types )
@@ -26,19 +27,23 @@ def article_content(request,id):
 
 
 def article_create(request):
+
     if request.method == "POST":
         article_post_form = ArticlePostForm(data=request.POST)
+        print(article_post_form.is_valid())
         if article_post_form.is_valid():
             new_article = article_post_form.save(commit=False)
             new_article.author = User.objects.get(id=1)
             new_article.save()
-            return redirect("article:article_list")
+            return redirect('homepage')
         else:
             return HttpResponse("invalid")
     else:
         article_post_form = ArticlePostForm()
         context = { 'article_post_form': article_post_form }
-        return render(request, 'article/create.html', context)
+        avatar = request.session.get('avatar')
+        context['avatar'] = avatar
+        return render(request, 'write.html', context)
 
 
 

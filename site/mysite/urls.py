@@ -13,9 +13,11 @@ urlpatterns = [
     url(r'^admin/',admin.site.urls),
     
     url(r'^mypage/mysetting', views.mysetting, name='mysetting'),
-    url(r'^mypage/write', views.write, name='write'),
+    
+    path('create_new_post/',blog_views.article_create, name = 'new_post'),
 
     path('mypage/<int:id>/',user_views.profile_content, name='mypage'),
+
 
     path('blog/<int:types>',blog_views.article_list,name='blog'),
     path('blog/content/<int:id>/',blog_views.article_content,name = 'blog_content'),
