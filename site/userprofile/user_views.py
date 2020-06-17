@@ -12,11 +12,13 @@ def user_login(request):
     if request.method == 'POST':
         user_login_form = UserLoginForm(data=request.POST)
         if user_login_form.is_valid():
+            #print(user_login_form)
             data=user_login_form.cleaned_data
             user = authenticate(username=data['username'],password=data['password'])
             if user:
                 login(request,user)
                 request.session['avatar'] = get_user_pic(user.id)
+                request.session['user_id'] = user.id
                 return redirect('homepage')
             else:
                 return HttpResponse("wrong username or password")
@@ -34,6 +36,9 @@ def get_user_pic(id):
     profile = Profile.objects.get(user_id = id)
     return profile.avatar.url
 
+
+def get_user_id(id):
+    return id
 
 def user_logout(request):
     logout(request)

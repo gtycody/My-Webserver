@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
+from django.contrib.auth.models import User
 from django.http import HttpResponse
 from .models import Post
 from userprofile import user_views
@@ -30,10 +31,11 @@ def article_create(request):
 
     if request.method == "POST":
         article_post_form = ArticlePostForm(data=request.POST)
-        print(article_post_form.is_valid())
+        print(article_post_form)
+        print(request.session.get('user_id'))
         if article_post_form.is_valid():
             new_article = article_post_form.save(commit=False)
-            new_article.author = User.objects.get(id=1)
+            new_article.author = User.objects.get(request.session.get('user_id'))
             new_article.save()
             return redirect('homepage')
         else:
