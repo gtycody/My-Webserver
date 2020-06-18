@@ -35,7 +35,7 @@ def article_create(request):
         print(request.session.get('user_id'))
         if article_post_form.is_valid():
             new_article = article_post_form.save(commit=False)
-            new_article.author = User.objects.get(request.session.get('user_id'))
+            new_article.author = User.objects.get(id = int(request.session.get('user_id')))
             new_article.save()
             return redirect('homepage')
         else:

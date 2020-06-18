@@ -1,5 +1,5 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static '/mysite/homepage.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/mysite/main.css' %}">
 
 <html>
     <head>
@@ -9,12 +9,7 @@
             *                     SPECIAL SETTTING                      *
             *                                                           *
             ************************************************************/
-            h1{
-                font: 1.75em/45px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-            }
-
-            
-
+        
             input{
                 box-sizing: border-box;
                 border-radius: 1em;
@@ -37,79 +32,6 @@
                 font-size: 1.5em;
             }
 
-
-
-            img{
-                height:100%;
-                width: 100%;
-                size: inherit;
-            }
-                       
-            .modulus_card{
-                width:90%;
-                background-color: white;
-                padding:20px;
-                margin-top: 20px;
-                margin-right:20px;
-            }
-
-            .card_2{
-                height: 397px;
-            }
-
-            /************************************************************
-            *                                                           *
-            *                     GOES TO CSS FILE                      *
-            *                                                           *
-            ************************************************************/
-
-            .card_2{
-                float: left;
-                width: 100%;
-                background-color: #f1f1f1;
-                display: flex;
-                justify-content: center;
-            }
-
-            .square{
-                display: flex;
-                justify-content: center;
-                width: 100%;
-                height:20vw;
-            }
-
-            .contentwrapper{
-                display:flex;
-                justify-content:center;
-            }
-
-            .photocard{
-                display: flex;
-                justify-content: center;
-            }
-            .photowrapper{
-                overflow: hidden;
-                height: 100px;
-                width: 100px;
-                border-radius: 100px;
-                background-color: black;
-                display: flex;
-                justify-content: center;
-            }
-            .button_wrapper{
-                background-color: white;
-                display: flex;
-                justify-content: center;
-            }
-
-            button{
-                border:black;
-                background-color: white;
-                border:2px solid black;
-                border-radius: 2em;
-                width: 150px;
-            }
-
             select{
                 background-color: white;
                 border:2px solid black;
@@ -119,68 +41,6 @@
                 font-size: 25px;
                 padding-left: 35px;
                 font-weight:normal
-            }
-
-            .bottom_1{
-                background-color:white;
-                height: 100px;
-                width: 100%;
-                border-radius: 3em;
-            }
-            .bottom_2{
-                background-color: white;
-                width: 20%;
-                height: 55px;
-                border-radius: 3em;
-            }
-            /*navigation bottom*/
-            #navicard{
-                display:flex;
-                justify-content: center;
-                padding-top: 1em;
-                padding-bottom: 2em;
-            }
-            #navi {
-              overflow: hidden;
-              text-align: center;
-              margin-left: 0px;
-              margin-right: 5%;
-              border-radius: 3em;
-            }
-
-            #navi ul li {
-            list-style-type: none;
-            }
-
-            /* Menu Link Styles */
-            #navi ul a {
-                display: block;
-                background: white; color:rgb(34, 27, 27);
-                height: 50px; 
-                font: 1.5em/45px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
-                text-decoration: none;
-
-                -webkit-transition: margin .4s ease-in-out;
-                -moz-transition: margin .4s ease-in-out;
-                -o-transition: margin .4s ease-in-out;
-                -ms-transition: margin .4s ease-in-out;
-                transition: margin .4s ease-in-out;
-            }
-
-            /* Secondary Link Styles */
-            #navi ul a:nth-of-type(even) {
-                background: rgb(34, 27, 27);
-                color: white;
-            }
-
-            /* Hover Slide */
-            #navi ul li:hover :first-child {
-                margin-top: -50px;
-            }
-            
-            .textwrapper{
-                display: flex;
-                justify-content: center;
             }
 
       </style>
@@ -217,7 +77,7 @@
                         </div>
                         <br>
 
-                        <div class = "contentwrapper">
+                        <div class = "textwrapper">
                             <div class="form-group">
                                 <input type="text" class="form-control" id="title" name="title">
                             </div>
@@ -231,7 +91,7 @@
                         <br>
 
 
-                        <div class = "contentwrapper">
+                        <div class = "textwrapper">
                             <div class="form-group">
                                 <textarea type="text" class="form-control" id="content" name="content" rows="12"></textarea>
                             </div>
@@ -239,7 +99,7 @@
 
 
                         <br><br><br>
-                        <div class = "contentwrapper">
+                        <div class = "textwrapper">
                             <select class="form-control" id = "post_type" name = "post_type"> 
                                 <option value = '0'>article</option>
                                 <option value = '1'>code</option>
@@ -249,7 +109,7 @@
 
                         <br><br><br>
 
-                        <div class = "contentwrapper">
+                        <div class = "textwrapper">
                             <button type="submit" class="btn btn-primary"><h2>
                                 SUBMIT
                             </h2></button>
@@ -259,7 +119,7 @@
                     </form>
                 </div>
                 {% else %}
-                    <div class="photocard">
+                    <div class="textwrapper">
                         <img src = "{% static "image/cover.png" %}">
                     </div>
                 {%endif%}
@@ -269,7 +129,7 @@
                 {% if user.is_authenticated %}
                     <div class = "card">
                         <br><br><br>
-                        <div class = "photocard">
+                        <div class = "textwrapper">
                             <a href="{%url 'mypage' user.id%}">
                                 <div class = "photowrapper">
                                     <img src={{avatar}}>

@@ -1,9 +1,14 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static '/mysite/homepage.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static '/mysite/main.css' %}">
 
 <html>
     <head>
         <style>
+            /************************************************************
+            *                                                           *
+            *                      special settings                     *
+            *                                                           *
+            ************************************************************/
             input{
                 box-sizing: border-box;
                 border-radius: 1em;
@@ -15,38 +20,7 @@
                 font-size: 1.5em;
             }
 
-            button{
-                border:black;
-                background-color: white;
-                border:2px solid black;
-                border-radius: 2em;
-                width: 150px;
-            }
-
-            a:link {
-                text-decoration: none;
-                color: black;
-            }
-            a:active{
-                text-decoration: none;
-                color: black
-            }
-            a:visited{
-                color:black
-            }
-
-            a:hover{
-                color:black
-            }
-
-            .header {
-                padding: 30px;
-                font-size: 40px;
-                text-align: center;
-                background:white;
-            }
-
-            .card {
+            .login_card {
                 width: 40%;
                 background-color:white;
                 padding: 20px;
@@ -56,17 +30,6 @@
                 padding-right: 2%;
                 
             }     
-            .card_wrapper{
-                background-color:#f1f1f1;
-                display: flex;
-                justify-content: center;
-            }
-
-            .button_wrapper{
-                background-color: white;
-                display: flex;
-                justify-content: center;
-            }
 
         </style>
     </head>
@@ -75,13 +38,13 @@
 
         <a href="{%url 'homepage'%}">
             <div class="header">
-                <h2>WELCOME</h2>
+                <h1>WELCOME</h1>
             </div>
         </a>
 
         
         <div class="card_wrapper">
-        <div class="card">
+        <div class="login_card">
             <br>
             <form method="post" action=".">
                 {% csrf_token %}

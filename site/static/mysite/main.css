@@ -1,0 +1,287 @@
+/************************************************************
+*                                                           *
+*                   hyper link settings                     *
+*                                                           *
+************************************************************/
+
+a:link {
+    text-decoration: none;
+    color: black;
+}
+
+a:active{
+    text-decoration: none;
+    color: black
+}
+
+a:visited{
+    color:black
+}
+  
+a:hover{
+    color:black
+}
+
+/************************************************************
+*                                                           *
+*                      basic settings                       *
+*                                                           *
+************************************************************/
+h1{
+    font: 1.75em/45px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+h3{
+    font: 1.5em/45px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+    size:inherit
+}
+  
+body {
+    font-family: Arial;
+    padding: 20px;
+    background: #f1f1f1;
+}
+  
+.header {
+    padding: 30px;
+    font-size: 40px;
+    text-align: center;
+    background:white;
+}
+
+.footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+}
+  
+.leftcolumn {
+    float: left;
+    width: 74%;
+}
+
+.rightcolumn {
+    float: right;
+    width: 24.5%;
+    zoom: 1;
+}
+
+.card {
+    background-color:white;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.card_2{
+    float: left;
+    width: 100%;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+}
+
+.modulus_card{
+    width:90%;
+    background-color: white;
+    padding:20px;
+    margin-top: 20px;
+    margin-right:20px;
+}
+  
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+  
+
+/************************************************************
+*                                                           *
+*                   login button settings                   *
+*                                                           *
+************************************************************/
+
+#menu {
+    overflow: hidden;
+    text-align: center;
+    margin-left: 0px;
+    border-radius: 3em;
+}
+  
+#menu ul li {
+    list-style-type: none;
+}
+  
+  /* Menu Link Styles */
+#menu ul a {
+    display: block;
+    background: white; color:rgb(34, 27, 27);
+    height: 90px; 
+    width: 85%;
+    margin-left: 0px;
+    font: 2em/100px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+    text-decoration: none;
+  
+    -webkit-transition: margin .4s ease-in-out;
+    -moz-transition: margin .4s ease-in-out;
+    -o-transition: margin .4s ease-in-out;
+    -ms-transition: margin .4s ease-in-out;
+    transition: margin .4s ease-in-out;
+}
+  
+  /* Secondary Link Styles */
+#menu ul a:nth-of-type(even) {
+    background: rgb(34, 27, 27);
+    color: white;
+}
+  
+  /* Hover Slide */
+#menu ul li:hover :first-child {
+    margin-top: -100px;
+}	
+  
+  
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 1100px) {
+    .leftcolumn, .rightcolumn {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+
+/************************************************************
+*                                                           *
+*                     wrapper settings                      *
+*                                                           *
+************************************************************/
+.titlewrapper{
+    background-color:white;
+    padding: 0.5em;
+    margin-top: 20px;
+    padding-left: 70px;
+}
+
+.textwrapper{
+    display: flex;
+    justify-content: center;
+}
+
+.photocard{
+    padding-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.photowrapper{
+    overflow: hidden;
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+}
+
+.card_wrapper{
+    background-color:#f1f1f1;
+    display: flex;
+    justify-content: center;
+}
+
+.button_wrapper{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.square{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height:20vw;
+}
+
+
+/************************************************************
+*                                                           *
+*                      button settings                      *
+*                                                           *
+************************************************************/
+
+
+
+button{
+    border:black;
+    background-color: white;
+    border:2px solid black;
+    border-radius: 2em;
+    width: 150px;
+}
+
+.bottom_1{
+    background-color:white;
+    height: 100px;
+    width: 100%;
+    border-radius: 3em;
+}
+
+.bottom_2{
+    background-color: white;
+    width: 20%;
+    height: 55px;
+    border-radius: 3em;
+}
+
+/************************************************************
+*                                                           *
+*                  navigation bar settings                  *
+*                                                           *
+************************************************************/
+
+#navicard{
+    display:flex;
+    justify-content: center;
+    padding-top: 1em;
+    padding-bottom: 2em;
+}
+#navi {
+    overflow: hidden;
+    text-align: center;
+    margin-left: 0px;
+    margin-right: 5%;
+    border-radius: 3em;
+}
+
+#navi ul li {
+    list-style-type: none;
+}
+
+#navi ul a {
+    display: block;
+    background: white; color:rgb(34, 27, 27);
+    height: 50px; 
+    font: 1.5em/45px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+    text-decoration: none;
+
+    -webkit-transition: margin .4s ease-in-out;
+    -moz-transition: margin .4s ease-in-out;
+    -o-transition: margin .4s ease-in-out;
+    -ms-transition: margin .4s ease-in-out;
+    transition: margin .4s ease-in-out;
+}
+
+#navi ul a:nth-of-type(even) {
+    background: rgb(34, 27, 27);
+    color: white;
+}
+
+#navi ul li:hover :first-child {
+    margin-top: -50px;
+}
