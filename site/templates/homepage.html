@@ -3,12 +3,20 @@
 
 <html>
     <head>
+        <style>
+        
+            #logo{
+                width: 28.5%;
+                height: 30%;
+            }
+            
+        </style>
 
     </head>
     <body>
         <a href="{%url 'homepage'%}">
             <div class="header">
-                <h1>HOMEPAGE</h1>
+                <img id = "logo" src = "{%static "logo/lab.png"%}">
             </div>
         </a>
 
@@ -63,7 +71,6 @@
                         <h2>My Account</h2>
                         <div class="bottom_1" id="menu"><ul><li><a>WELCOME BACK</a><a href="{%url 'login'%}">LOG IN</a></li></ul></div>
                     <br><br>
-                        <p>forgot my password</p>
                     </div>
                 {% endif %}
                 

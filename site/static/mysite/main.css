@@ -50,7 +50,6 @@ body {
 .header {
     padding: 30px;
     font-size: 40px;
-    text-align: center;
     background:white;
 }
 
@@ -284,4 +283,9 @@ button{
 
 #navi ul li:hover :first-child {
     margin-top: -50px;
+}
+
+#logo{
+    width: 28.5%;
+    height: 30%;
 }
