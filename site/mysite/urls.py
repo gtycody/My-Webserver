@@ -18,6 +18,8 @@ urlpatterns = [
 
     path('mypage/<int:id>/',user_views.profile_content, name='mypage'),
 
+    path('aboutUs/',views.aboutUs, name='aboutUs'),
+
 
     path('blog/<int:types>',blog_views.article_list,name='blog'),
     path('blog/content/<int:id>/',blog_views.article_content,name = 'blog_content'),

@@ -1,0 +1,183 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/mysite/main.css' %}">
+
+<html>
+    <head>
+        <style>
+            body{
+                background-color: white;
+            }
+        
+            #logo{
+                width: 100%;
+                height: 100%;
+            }
+
+            .nopaddingcard{
+                background-color:white;
+            }
+
+            .cardwithborder{
+                padding: 20px;
+                margin-top: 20px;
+                border:2px solid black;
+            }
+            #navi2{
+                margin: 0px;
+                padding: 0px;
+            }
+
+            .navilogo{
+                width: 100px;
+                height: 50px;
+                padding-right: 120px;
+            }
+
+
+            .leftcolumn {
+                float: left;
+                width: 50%;
+                padding-left: 24.5%;
+            }
+
+            .rightcolumn {
+                float: right;
+                width: 24.5%;
+                zoom: 1;
+            }
+
+            .listcard{
+                height: 100px;    
+                padding-left: 60px;
+                border:2px solid black;
+                margin-bottom: 20px;                
+            }
+
+            .square100{
+                height: 100px;
+                width: 100px;
+                background-color:rgb(27,27,27);
+            }
+            .rect8{
+                height: 100px;
+                width: 8px;
+            }
+
+            .photocover{
+                height: 50vw;
+                width: 100vw;
+            }
+
+
+
+        </style>
+
+
+    </head>
+    <body id="navi2">
+        <div class = "navi2" id = "navicard">
+            <a href="{%url 'homepage'%}">
+                <div class = "navilogo">
+                    <img id = "logo" src = "{%static "logo/logo-white.png"%}">
+                </div>
+            </a>
+            <a href="{%url 'blog' 0%}"><div class="bottom_3">BLOG</div></a>
+            <a href="{%url 'blog' 1%}"><div class="bottom_3">PROJECTS</div> </a>
+            <a href="{%url 'blog' 2%}"><div class="bottom_3">PHOTO</div></a>
+            <a href="{%url 'aboutUs' %}"><div class="bottom_3">ABOUT US</div></a>
+        </div>
+
+        <div class="textwrapper">
+            <div class = "photocover">
+                <img src = "{% static "image/articlebackground.png" %}">
+            </div>
+        </div>
+
+
+
+
+          
+        <div class="row">
+            <div class="leftcolumn">
+                <br><br><br><br>
+                {% for article in articles %}
+                <a href="{%url 'blog_content' article.id%}">
+                    <div class="listcard">
+                        <div class = "textwrapper" style="float:left; width: 70%; justify-content: left;">
+                            <h3>{{article.title}}</h3>
+                        </div>
+                        
+                        <div class="square100" style ="float: right;">
+                            <div class = "textwrapper">
+                                <h2 style="color: white;">
+                                    {{article.created_on}}
+                                </h2>
+                            </div>
+                        </div>
+                        <div class = "rect8" style="background-color:red; float: right;">
+                        </div>
+                    </div>
+                </a>
+                    
+                {% endfor %} 
+            </div>
+
+            <div class="rightcolumn">
+                {% if user.is_authenticated %}
+                    <div class = "card">
+                        <br><br>
+                        <div class = "photocard">
+                            <a href="{%url 'mypage' user.id%}">
+                                <div class = "photowrapper">
+                                    <img src={{avatar}}>
+                                </div>
+                            </a>
+                        </div>
+                            
+
+                        <br>
+                        <div class = "textwrapper">
+                            <h2>{{ user.username }}</h2>
+                        </div>
+
+
+                        <br>
+                        <div class = "button_wrapper">
+                            <button type="submit" class="btn btn-primary">
+                                <a href="{% url 'logout' %}">
+                                    <h2>LOGOUT</h2>
+                                </a>
+                            </button>
+                        </div>
+                        <br>
+
+
+                    </div>
+
+                {% else %}
+                    <br><br><br>
+                    <div class="card">
+                        <div class="bottom_1" id="menu"><ul><li><a>>>LOG IN<<</a><a href="{%url 'login'%}">Welcome</a></li></ul></div>
+                    <br><br>
+                    </div>
+                {% endif %}
+                
+            </div>
+        </div>
+    
+
+
+          <div class="footer">
+            <h2>Footer</h2>
+          </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+

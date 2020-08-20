@@ -1,0 +1,179 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/mysite/main.css' %}">
+
+<html>
+    <head>
+        <style>
+            body{
+                background-color: white;
+            }
+        
+            #logo{
+                width: 100%;
+                height: 100%;
+            }
+
+            .nopaddingcard{
+                background-color:white;
+            }
+
+            .cardwithborder{
+                padding: 20px;
+                margin-top: 20px;
+                border:2px solid black;
+            }
+            #navi2{
+                margin: 0px;
+                padding: 0px;
+            }
+
+            .navilogo{
+                width: 100px;
+                height: 50px;
+                padding-right: 120px;
+            }
+
+
+            .leftcolumn {
+                float: left;
+                width: 50%;
+                padding-left: 24.5%;
+            }
+
+            .rightcolumn {
+                float: right;
+                width: 24.5%;
+                zoom: 1;
+            }
+
+            .listcard{    
+                padding-left: 60px;
+            }
+
+            .squre300{
+                height: 300px;
+                width: 300px;
+            }
+            .squre200{
+                height: 200px;
+                width: 200px;
+            }
+
+        </style>
+
+
+    </head>
+    <body id="navi2">
+        <div class = "navi2" id = "navicard">
+            <a href="{%url 'homepage'%}">
+                <div class = "navilogo" style="width: 10px;">
+                </div>
+            </a>
+            <a href="{%url 'blog' 0%}"><div class="bottom_3">BLOG</div></a>
+            <a href="{%url 'blog' 1%}"><div class="bottom_3">PROJECTS</div> </a>
+            <a href="{%url 'blog' 2%}"><div class="bottom_3">PHOTO</div></a>
+            <a href="{%url 'aboutUs' %}"><div class="bottom_3">ABOUT US</div></a>
+        </div>
+
+        <div class="header">
+            <a href="{%url 'homepage'%}">
+                <div class = "textwrapper" style="justify-content: left; padding-left: 15%;" >
+                    <div class = "logowrapper">
+                        <img id = "logo" src = "{%static "logo/logo-2-red.png"%}">
+                    </div>
+                </div>
+            </a>
+        </div>
+
+          
+        <div class="row">
+            <div class="leftcolumn">
+                <br>
+
+                <!-- <div class = "textwrapper"style="justify-content:right">
+                    <div class = "codecard43"></div>
+                    <div class = "rect8" style="background-color: red;"></div>
+                    <div class ="codecard43" style="background-color: black;"></div>
+                </div>
+                <br> -->
+                <a href="#">
+                    <div class ="textwrapper">
+                        <h4>About GC lab</h4>
+                    </div>
+
+                    <div class = "textwrapper">
+                        <h1>
+                            GC lab is a technology working studio providing client with technology solutions across mutiple
+                            platforms. Founded in 2020, GC lab focus on embedded software solutions, front-end and back-end development
+                            for commercial usage.
+                        </h1>
+                    </div>
+
+                    <div class ="textwrapper">
+                        <h4>Our Vision</h4>
+                    </div>
+                    <br>
+
+                    <div class="listcard">
+                    </div>
+                </a>
+            </div>
+
+            <div class="rightcolumn">
+                {% if user.is_authenticated %}
+                    <div class = "card">
+                        <br><br>
+                        <div class = "photocard">
+                            <a href="{%url 'mypage' user.id%}">
+                                <div class = "photowrapper">
+                                    <img src={{avatar}}>
+                                </div>
+                            </a>
+                        </div>
+                            
+
+                        <br>
+                        <div class = "textwrapper">
+                            <h2>{{ user.username }}</h2>
+                        </div>
+
+
+                        <br>
+                        <div class = "button_wrapper">
+                            <button type="submit" class="btn btn-primary">
+                                <a href="{% url 'logout' %}">
+                                    <h2>LOGOUT</h2>
+                                </a>
+                            </button>
+                        </div>
+                        <br>
+
+
+                    </div>
+
+                {% else %}
+                    <div class="card">
+                        <div class="bottom_1" id="menu"><ul><li><a>>>LOG IN<<</a><a href="{%url 'login'%}">Welcome</a></li></ul></div>
+                    <br><br>
+                    </div>
+                {% endif %}
+                
+            </div>
+        </div>
+    
+
+
+          <div class="footer">
+            <h2>Footer</h2>
+          </div>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+

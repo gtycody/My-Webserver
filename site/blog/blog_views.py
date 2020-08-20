@@ -6,13 +6,33 @@ from .models import Post
 from userprofile import user_views
 import markdown
 from .forms import ArticlePostForm
+from datetime import datetime
+from datetime import timedelta
 
 def article_list(request, types):
-    articles = Post.objects.filter(post_type = types )
+
+    articles = Post.objects.filter(post_type = types)
+
+    for i in articles:
+        i.created_on =i.created_on.date
+        i.updated_on =i.updated_on.date
+
     context = {'articles': articles}
     avatar = request.session.get('avatar')
     context['avatar'] = avatar
-    return render(request, 'list.html', context)
+    print(context)
+
+    if(types == 0):
+        context['post_type']="Article"
+        return render(request, 'article_list.html', context)
+    elif(types == 1):
+        context['post_type']="Project"
+        return render(request, 'code_list.html', context)
+    elif(types == 2):
+        context['post_type']="Photo"
+        return render(request, 'photo_list.html', context)
+
+    
 
 
 def article_content(request,id):

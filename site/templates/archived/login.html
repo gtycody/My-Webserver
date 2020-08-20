@@ -1,0 +1,77 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static '/mysite/main.css' %}">
+
+<html>
+    <head>
+        <style>
+            /************************************************************
+            *                                                           *
+            *                      special settings                     *
+            *                                                           *
+            ************************************************************/
+            input{
+                box-sizing: border-box;
+                border-radius: 1em;
+                padding: 7px 0px;
+                padding-left: 1em;
+                padding-right:1em;
+                border: 2px solid black; 
+                width: 250px;
+                font-size: 1.5em;
+            }
+
+            .login_card {
+                width: 40%;
+                background-color:white;
+                padding: 20px;
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+                padding-right: 2%;
+                
+            }     
+
+        </style>
+    </head>
+
+    <body>
+
+        <a href="{%url 'homepage'%}">
+            <div class="header">
+                <div class="textwrapper">
+                    <h1>WELCOME</h1>
+                </div>
+            </div>
+        </a>
+
+        
+        <div class="card_wrapper">
+        <div class="login_card">
+            <br>
+            <form method="post" action=".">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="username"><h2>Username</h2></label>
+                    <input type="text" class="form-control" id="username" name="username">
+                </div>
+
+                <br>
+                
+                <div class="form-group">
+                    <label for="password"><h2>Password</h2></label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+
+                <br><br><br><br><br>
+
+                <div class="button_wrapper">
+                    <button type="submit" class="btn btn-primary"><h2>LOGIN</h2></button>
+                </div>
+
+            </form>
+        </div>
+        </div>
+
+    </body>
+</html>

@@ -18,4 +18,9 @@ def mypage(request):
 def mysetting(request):
     return render(request,'mysetting.html')
 
+def aboutUs(request):
+    context = {}
+    avatar = request.session.get('avatar')
+    context['avatar'] = avatar
+    return render(request,'aboutUs.html', context)
 

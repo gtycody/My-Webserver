@@ -3,36 +3,96 @@
 
 <html>
     <head>
+        <style>
+            .navilogo{
+                width: 100px;
+                height: 50px;
+                padding-right: 120px;
+            }
+            .navi2{
+                background-color: black;
+                height: 40px;
+            }
+
+            body{
+                background-color: white;
+                padding:0px;
+                margin: 0px;
+            }
+        
+            #logo{
+                width: 100%;
+                height: 100%;
+            }
+
+            .nopaddingcard{
+                background-color:white;
+            }
+
+            .cardwithborder{
+                padding: 20px;
+                margin-top: 20px;
+                border:2px solid black;
+            }
+            #navi2{
+                margin: 0px;
+                padding: 0px;
+            }
+
+            .bottom_3{
+                height: 40px;
+                width: 200px;
+                font: 1.25em/45px "Helvetica Neue", Arial, Helvetica, Geneva, sans-serif;
+                color:white
+            }
+            .logowrapper{
+                padding-left: 150px;
+            }
+
+            .leftcolumn {
+                float: left;
+                width: 62%;
+                padding-left: 13%;
+            }
+
+            .rightcolumn {
+                float: right;
+                width: 23.5%;
+                zoom: 1;
+            }
+
+            .covercard{
+                height: 50vw;
+                width: 100vw;
+            }
+        </style>
     </head>
 
 
     <body>
-        <a href="{%url 'homepage'%}">
-            <div class="header">
-                <h1>HOMEPAGE</h1>
-            </div>
-        </a>
-
-        <div class="card" id="navicard">
-            <div class="bottom_2" id="navi"><ul><li><a>BLOG</a><a href="{%url 'blog' 0%}">BLOG</a></li></ul></div>
-            <div class="bottom_2" id="navi"><ul><li><a>CODE</a><a href="{%url 'blog' 1%}">#include stdio.h</a></li></ul></div>
-            <div class="bottom_2" id="navi"><ul><li><a>PHOTO</a><a href="{%url 'blog' 2%}">PHOTO</a></li></ul></div>
-            <div class="bottom_2" id="navi"><ul><li><a>ABOUT ME</a><a href="#">CONTACT</a></li></ul></div>
+        <div class = "navi2" id = "navicard">
+            <a href="{%url 'homepage'%}">
+                <div class = "navilogo">
+                    <img id = "logo" src = "{%static "logo/logo-white.png"%}">
+                </div>
+            </a>
+            <a href="{%url 'blog' 0%}"><div class="bottom_3">BLOG</div></a>
+            <a href="{%url 'blog' 1%}"><div class="bottom_3">PROJECTS</div> </a>
+            <a href="{%url 'blog' 2%}"><div class="bottom_3">PHOTO</div></a>
+            <a href="{%url 'aboutUs' %}"><div class="bottom_3">ABOUT US</div></a>
         </div>
-        
-        
+
 
         <div class="row">
             {% if user.is_authenticated %}
             <div class="leftcolumn">
                 <div class="card_2">
-
                     <div class="modulus_card">
                         <a href = "{%url 'new_post'%}">
                             <br><br><br>
                             <div class="textwrapper">
                                 <div class = "square">
-                                    <img src= "{% static "image/write.png" %}" alt="My image">
+                                    <img src= "{% static "logo/Write.png" %}" alt="My image">
                                 </div>
                             </div>
                             <br><br>
@@ -49,7 +109,7 @@
                             <br><br><br>
                             <div class="textwrapper">
                                 <div class = "square">
-                                    <img src= "{% static "image/email.png" %}" alt="My image">
+                                    <img src= "{% static "logo/Mail.png" %}" alt="My image">
                                 </div>
                             </div>
                             <br><br>
@@ -65,7 +125,7 @@
                             <br><br><br>
                             <div class="textwrapper">
                                 <div class = "square">
-                                    <img src= "{% static "image/mysetting.png" %}" alt="My image">
+                                    <img src= "{% static "logo/setting.png" %}" alt="My image">
                                 </div>
                             </div>
                             <br><br>
@@ -89,7 +149,7 @@
             <div class="rightcolumn">
                 {% if user.is_authenticated %}
                     <div class = "card">
-                        <br><br><br>
+                        <br><br><br><br>
                         <div class = "textwrapper">
                             <div class = "photowrapper">
                                 {% if user_profile.avatar %}
@@ -129,12 +189,6 @@
                         <p>forgot my password</p>
                     </div>
                 {% endif %}
-                
-                    <div class="card">
-                        <h2>Notifiction</h2>
-                        </div><br>
-                    </div>
-                
                 
             </div>
         </div>
