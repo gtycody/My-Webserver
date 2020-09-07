@@ -15,10 +15,13 @@ urlpatterns = [
     url(r'^mypage/mysetting', views.mysetting, name='mysetting'),
     
     path('create_new_post/',blog_views.article_create, name = 'new_post'),
+    path('create_new_photo/',blog_views.photo_create,name = 'new_photo'),
 
     path('mypage/<int:id>/',user_views.profile_content, name='mypage'),
 
     path('aboutUs/',views.aboutUs, name='aboutUs'),
+
+    #path('photo/',views.photo,name = 'photo')
 
 
     path('blog/<int:types>',blog_views.article_list,name='blog'),

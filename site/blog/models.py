@@ -33,15 +33,15 @@ class Post(models.Model):
 
 
 class Photo(models.Model):
-    title = models.CharField(max_length=200, unique=True)
-    author = models.ForeignKey(User, on_delete= models.CASCADE,related_name='blog_posts')
+    title = models.CharField(max_length=200, unique=False)
+    author = models.ForeignKey(User, on_delete= models.CASCADE,related_name='image_post')
     updated_on = models.DateTimeField(auto_now= True)
 
-    #image = models.ImageField(upload_to='avatar/%Y%m%d/', blank=True)
+    image = models.ImageField(upload_to='image/%Y%m%d/', blank=True)
     
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
-    post_type = models.IntegerField(choices=POST_TYPE, default=0)
+    post_type = models.IntegerField(choices=POST_TYPE, default=2)
 
     class Meta:
         ordering = ['-created_on']

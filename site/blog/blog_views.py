@@ -1,13 +1,11 @@
-from django.shortcuts import render
-from django.shortcuts import render, redirect
+from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.http import HttpResponse
-from .models import Post
+from .models import Post,Photo
 from userprofile import user_views
 import markdown
-from .forms import ArticlePostForm
-from datetime import datetime
-from datetime import timedelta
+from .forms import ArticlePostForm, PhotoPostForm
+from datetime import datetime,timedelta
 
 def article_list(request, types):
 
@@ -48,11 +46,9 @@ def article_content(request,id):
 
 
 def article_create(request):
-
     if request.method == "POST":
         article_post_form = ArticlePostForm(data=request.POST)
         print(article_post_form)
-        print(request.session.get('user_id'))
         if article_post_form.is_valid():
             new_article = article_post_form.save(commit=False)
             new_article.author = User.objects.get(id = int(request.session.get('user_id')))
@@ -62,10 +58,37 @@ def article_create(request):
             return HttpResponse("invalid")
     else:
         article_post_form = ArticlePostForm()
+        print(article_post_form)
         context = { 'article_post_form': article_post_form }
         avatar = request.session.get('avatar')
         context['avatar'] = avatar
         return render(request, 'write.html', context)
 
 
+def photo_create(request):
 
+    if request.method == "POST":
+        photo_post_form = PhotoPostForm(request.POST, request.FILES)
+        #print(photo_post_form)
+        #print(photo_post_form.is_valid())
+        if photo_post_form.is_valid():
+            print(request.FILES.getlist('Photos'))
+            instance = photo_post_form.save(commit=False)
+            instance.title = request.POST['title']
+            for img in request.FILES.getlist('Photos'):
+                instance = Photo(image = img)
+                print("instance", instance)
+                instance.author = User.objects.get(id = int(request.session.get('user_id')))
+                instance.save()
+            return redirect('homepage')
+        else:
+            return HttpResponse("invalid")
+
+    else:
+        photo_post_form = PhotoPostForm()
+        context = {'form':photo_post_form}
+        avatar = request.session.get('avatar')
+        context['avatar'] = avatar
+        #print("form: ",photo_post_form)
+        return render(request,'photoUpLoad.html',context)
+        
